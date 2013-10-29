@@ -16,10 +16,12 @@ Random war between Kingdoms.
 Random trade between Kingdoms.
 -War and Trade will not be COMPLETELY random. IE friendly kingdoms won't have as high a chance to wage war with each other.
 Multiple Kingdoms for inter-kingdom drama.
+Natural disasters that befall each Kingdom.
 Multiple forms of drama, including but not limited to:
 -Incest
 -Assassinations
 -Death Due To Illness
+-Death Due To Natural Disaster
 -Death Due To War
 -Declarations of War
 -Trade Embargos
