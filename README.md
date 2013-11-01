@@ -1,7 +1,7 @@
 LordsAndLadies
 ==============
 
-v0.0.0.a0
+v0.0.0.a1
 
 Random kingdom and kingdom drama generator.
 
