@@ -14,17 +14,17 @@ import ttk
 def get_name(name_type):
   
   if name_type == "kingdom":
-    with open("placeholder" -r) as opened_file:
+    with open("placeholder", -r) as opened_file:
       lines = opened_file.readlines()
       return lines[randint(0, 201)]
   
   elif name_type == "location":
-    with open("placeholder" -r) as opened_file:
+    with open("placeholder", -r) as opened_file:
       lines = opened_file.readlines()
       return lines[randint(0, 201)]
   
   elif name_type == "person":
-    with open("placeholder" -r) as opened_file:
+    with open("placeholder", -r) as opened_file:
       lines = opened_file.readlines()
       return lines[randint(0, 201)]
 #Use this for random names at creation of place or person.
