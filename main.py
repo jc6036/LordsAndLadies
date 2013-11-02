@@ -37,11 +37,12 @@ class Kingdom(object, name):
     name = self.name
   
 
-class Location(Kingdom, name):
+class Location(Kingdom, name, variation):
   """Various functions for locations in kingdoms"""
   
-  def __init__(self, name):
+  def __init__(self, name, variation):
     name = self.name
+    variation = self.variation
 
 
 class ImportantPerson(object, name, job):
