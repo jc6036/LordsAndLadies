@@ -1,6 +1,6 @@
 ########################
 #Lords and Ladies      #
-#v0.0.a1               #
+#v0.0.a2               #
 #Authored by jc6036    #
 #Python 3.2 with       #
 #Tkinter, ttk and      #
@@ -11,25 +11,42 @@ from random import randint
 from tkinter import *
 import ttk
 
-class Kingdom(object):
+def get_name(name_type):
+  
+  if name_type == "kingdom":
+    with open("placeholder" -r) as opened_file:
+      lines = opened_file.readlines()
+      return lines[randint(0, 201)]
+  
+  elif name_type == "location":
+    with open("placeholder" -r) as opened_file:
+      lines = opened_file.readlines()
+      return lines[randint(0, 201)]
+  
+  elif name_type == "person":
+    with open("placeholder" -r) as opened_file:
+      lines = opened_file.readlines()
+      return lines[randint(0, 201)]
+#Use this for random names at startup.
+
+
+class Kingdom(object, name):
   """Contains the kingdoms"""
   
-  def __init__(self):
-    pass
+  def __init__(self, name):
+    name = self.name
   
 
-class Location(Kingdom):
+class Location(Kingdom, name):
   """Various functions for locations in kingdoms"""
   
-  def __init__(self):
-    pass
+  def __init__(self, name):
+    name = self.name
 
 
-class ImportantPerson(object):
+class ImportantPerson(object, name, job):
   """Standard template for a person"""
   
-  def __init__(self):
-    pass
-
-
-
+  def __init__(self, name, job):
+    name = self.name
+    job = self.job
