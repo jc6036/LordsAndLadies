@@ -27,7 +27,7 @@ def get_name(name_type):
     with open("placeholder" -r) as opened_file:
       lines = opened_file.readlines()
       return lines[randint(0, 201)]
-#Use this for random names at startup.
+#Use this for random names at creation of place or person.
 
 
 class Kingdom(object, name):
