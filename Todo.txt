@@ -1,16 +1,25 @@
 Todo: Get a basic working program going, and then add in text files of various names and keywords.
 
 
-Planned features:
+Finished Features:
 
-Random names for nobility ranging from lords and ladies to kings and queens.
-Random Kingdom names.
-Random Provinces/Towns/Villages within each kingdom.
-Random names for influential people below nobility.
+---------------------------
+
+Partially Done:
+
+Random names for nobility ranging from lords and ladies to kings and queens. (Done, but needs text file.)
+Random Kingdom names. (Done, but needs text file.)
+Random Provinces/Towns/Villages within each kingdom. (Done, but needs text file.)
+Random names for influential people below nobility. (Done, but needs text file.)
 -Revolutionaries
 -Inventors
 -Those that sleep with nobility
 -Those that kill nobility
+
+---------------------------
+
+Planned features:
+
 Random revolutions, usurping.
 Random war names.
 Random war between Kingdoms.
