@@ -21,6 +21,7 @@ Random names for influential people below nobility. (Done, but needs text file.)
 Planned features:
 
 Random revolutions, usurping.
+Random titles as prefixes/subfixes.
 Random war names.
 Random war between Kingdoms.
 Random trade between Kingdoms.
