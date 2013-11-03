@@ -1,6 +1,6 @@
 ########################
 #Lords and Ladies      #
-#v0.0.a2               #
+#v0.0.a4               #
 #Authored by jc6036    #
 #Python 3.2 with       #
 #Tkinter, ttk and      #
@@ -39,15 +39,56 @@ class Kingdom(object, name):
 
 class Location(Kingdom, name, variation):
   """Various functions for locations in kingdoms"""
+  #Variation == village, town, city, or castle.
   
   def __init__(self, name, variation):
     name = self.name
     variation = self.variation
 
 
-class ImportantPerson(object, name, job):
-  """Standard template for a person"""
+class Person(object, name, name_type):
+  """Function holder for people."""
   
   def __init__(self, name, job):
     name = self.name
     job = self.job
+
+  def title_get(self, name_type):
+    if name_type == "nobility":
+      with open("placeholder", -r) as line:
+        return line
+    elif name_type == "influential":
+      with open("placeholder", -r) as line:
+        return line
+  #Grabs titles for the names of people.
+
+
+class Nobility(Person, name, job):
+  """Specific actions for Nobility."""
+  
+  name_type = "nobility"
+  
+  def __init__(self, name, job):
+    name = self.name
+    job = self.job
+
+
+class InfluentialPerson(Person, name, job):
+  """Specific actions for Influential People."""
+  
+  name_type = "influential"
+  
+  def __init__(self, name, job):
+    name = self.name
+    job = self.job
+
+
+
+
+
+
+
+
+
+
+
