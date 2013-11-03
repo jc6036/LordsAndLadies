@@ -38,3 +38,6 @@ Multiple forms of drama, including but not limited to:
 -Kingdom Pillaging
 -Adultery
 -Gossip
+Incorporate the GUI using tkinter.
+Decide on a final design for the GUI.
+Decide on the output, whether it be text file or in-window/console.

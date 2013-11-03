@@ -35,6 +35,7 @@ class Kingdom(object, name):
   
   def __init__(self, name):
     name = self.name
+#For creation of Kindoms.
   
 
 class Location(Kingdom, name, variation):
@@ -44,7 +45,7 @@ class Location(Kingdom, name, variation):
   def __init__(self, name, variation):
     name = self.name
     variation = self.variation
-
+#Location creator.
 
 class Person(object, name, name_type):
   """Function holder for people."""
@@ -60,7 +61,7 @@ class Person(object, name, name_type):
     elif name_type == "influential":
       with open("placeholder", -r) as line:
         return line
-  #Grabs titles for the names of people.
+#Grabs titles for the names of people.
 
 
 class Nobility(Person, name, job):
@@ -81,14 +82,3 @@ class InfluentialPerson(Person, name, job):
   def __init__(self, name, job):
     name = self.name
     job = self.job
-
-
-
-
-
-
-
-
-
-
-
