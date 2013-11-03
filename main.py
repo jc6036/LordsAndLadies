@@ -1,6 +1,6 @@
 ########################
 #Lords and Ladies      #
-#v0.0.a4               #
+#v0.0.a5               #
 #Authored by jc6036    #
 #Python 3.2 with       #
 #Tkinter, ttk and      #
@@ -30,6 +30,13 @@ def get_name(name_type):
 #Use this for random names at creation of place or person.
 
 
+def create_base_kingdom(name):
+  name = Kingdom(get_name("kingdom"))
+  king = Nobility(get_name("person"))
+  queen = Nobility(get_name("person"))
+#Creates the basic Kingdom. Expand using functions.Kingdom.
+
+
 class Kingdom(object, name):
   """Contains the kingdoms"""
   
@@ -37,6 +44,7 @@ class Kingdom(object, name):
     name = self.name
 #For creation of Kindoms.
   
+
 
 class Location(Kingdom, name, variation):
   """Various functions for locations in kingdoms"""
@@ -47,6 +55,8 @@ class Location(Kingdom, name, variation):
     variation = self.variation
 #Location creator.
 
+
+
 class Person(object, name, name_type):
   """Function holder for people."""
   
@@ -55,13 +65,14 @@ class Person(object, name, name_type):
     job = self.job
 
   def title_get(self, name_type):
-    if name_type == "nobility":
+    if self.name_type == "nobility":
       with open("placeholder", -r) as line:
         return line
-    elif name_type == "influential":
+    elif self.name_type == "influential":
       with open("placeholder", -r) as line:
         return line
 #Grabs titles for the names of people.
+
 
 
 class Nobility(Person, name, job):
@@ -74,6 +85,7 @@ class Nobility(Person, name, job):
     job = self.job
 
 
+
 class InfluentialPerson(Person, name, job):
   """Specific actions for Influential People."""
   
@@ -82,3 +94,16 @@ class InfluentialPerson(Person, name, job):
   def __init__(self, name, job):
     name = self.name
     job = self.job
+
+
+
+
+
+
+
+
+
+
+
+
+
