@@ -1,6 +1,6 @@
 ########################
 #Lords and Ladies      #
-#v0.0.a6               #
+#v0.0.a8               #
 #Authored by jc6036    #
 #Python 3.2 with       #
 #Tkinter, ttk and      #
@@ -44,38 +44,38 @@ class Kingdom(object, name):
     king = Nobility(get_name("person"), "king")
     queen = Nobility(get_name("person"), "queen")
   
-  def populate_noble_children(self):
+  def populate_noble_children(self, identifier):
     gender = ["male", "female"]
     chosen_gender = gender[randint(0, 2)]
 
     if chosen_gender == "male":
-      prince = Nobility(get_name("person"), "prince")
+      identifier = Nobility(get_name("person"), "prince")
 
     elif chosen_gender == "female":
-      princess = Nobility(get_name("person"), "princess")
+      identifier = Nobility(get_name("person"), "princess")
   
-  def populate_landlords(self):
+  def populate_landlords(self, identifier):
     gender = ["male", "female"]
     chosen_gender = gender[randint(0, 2)]
 
     if chosen_gender == "male":
-      lord = Nobility(get_name("person"), "lord")
+      identifier = Nobility(get_name("person"), "lord")
 
     elif chosen_gender == "female":
-      lady = Nobility(get_name("person"), "lady")
+      identifier = Nobility(get_name("person"), "lady")
   
-  def populate_important_person(self):
+  def populate_important_person(self, identifier):
     job = ["artisan", "blacksmith", "painter", "mathmetician",
            "inventor", "thief", "bandit", "alchemist"]
     chosen_job = job[randint(0, 9)]
     
-    important_person = InfluentialPerson(get_name("person"), chosen_job)
+    identifier = InfluentialPerson(get_name("person"), chosen_job)
   
-  def create_location(self):
+  def create_location(self, identifier):
     places = ["village", "town", "city", "castle"]
     chosen_place = places[randint(0, 5)]
     
-    place = Location(get_name("location"), chosen_place)
+    identifier = Location(get_name("location"), chosen_place)
 #For creation of Kingdoms/Populatio/Locations.
   
 
@@ -92,17 +92,17 @@ class Location(Kingdom, name, variation):
 class Person(object, name, name_type):
   """Function holder for people."""
   
-  def __init__(self, name, job):
+  def __init__(self, name):
     name = self.name
-    job = self.job
+    name_type = self.name_type
 
   def title_get(self, name_type):
-    if self.name_type == "nobility":
+    if name_type == "nobility":
       with open("placeholder", -r) as opened_file:
         lines = opened_file.readline()
         return lines[randint(1, 51)]
 
-    elif self.name_type == "influential":
+    elif name_type == "influential":
       with open("placeholder", -r) as opened_file:
         lines = opened_file.readline()
         return lines[randint(1, 51)]
@@ -127,3 +127,12 @@ class InfluentialPerson(Person, name, job):
   def __init__(self, name, job):
     name = self.name
     job = self.job
+
+
+
+
+
+#For main logic loop: figure out algorithm to generate
+#multiple people with different identifiers for
+#the ability to have more than one object of the same
+#type generated automatically.
