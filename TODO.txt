@@ -20,6 +20,7 @@ Random names for influential people below nobility. (Done, but needs text file.)
 
 Planned features:
 
+Figure out how to include multiples of Objects within a Kingdom. Shouldn't be too hard.
 Random revolutions, usurping.
 Random titles as prefixes/subfixes.
 Random war names.
@@ -42,3 +43,4 @@ Multiple forms of drama, including but not limited to:
 Incorporate the GUI using tkinter.
 Decide on a final design for the GUI.
 Decide on the output, whether it be text file or in-window/console.
+Generate number-of-actions-per-year algorithm.
