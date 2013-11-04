@@ -1,6 +1,6 @@
 ########################
 #Lords and Ladies      #
-#v0.0.a5               #
+#v0.0.a6               #
 #Authored by jc6036    #
 #Python 3.2 with       #
 #Tkinter, ttk and      #
