@@ -1,6 +1,6 @@
 ########################
 #Lords and Ladies      #
-#v0.0.a8               #
+#v0.0.a9               #
 #Authored by jc6036    #
 #Python 3.2 with       #
 #Tkinter, ttk and      #
@@ -172,9 +172,10 @@ def create_kingdom(kingdom_number):
     print("Numbers only, please.")
 
 
-  number_of_locations = raw_input("How many locations? These are Villages, cities, and towns.")
+  number_of_locations = raw_input("""
+                      How many locations? These are Villages, cities, and towns.
+                                  """)
 
-    
   if number_of_locations > 20:
     print("No more than twenty.")
     
@@ -187,18 +188,18 @@ def create_kingdom(kingdom_number):
 
 
 print("""
-      Welcome to Lords and Ladies!\n
-      Prepare yourself for drama. Wars, crazy weather, and assassination abound!\n
+      Welcome to Lords and Ladies!
+      Prepare yourself for drama.
+      Wars, crazy weather, and assassination abound!
       """)
 
 print("""
-      
       Create your first kingdom to get started.
       """)
 
 create_kingdom("kingdom_1")
 
-amount_new = raw_input("Now then, how many more Kingdoms would you like to add?")
+amount_new = raw_input("How many more Kingdoms would you like to add?")
 
 for i in range(2, amount_new + 1):
   create_kingdom("kingdom_" + str(i))
