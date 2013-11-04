@@ -1,6 +1,11 @@
 LordsAndLadies
 ==============
 
+Lords and Ladies is written in Python 3.2, and uses the random, tkinter, and ttk modules.
+They are all required for the program to work.
+
+----------
+
 Due to early stages, current version number available in main.py.
 
 Random kingdom and kingdom drama generator.
