@@ -128,7 +128,9 @@ def get_name(name_type):
 def create_kingdom(kingdom_number):
 #All-in-one function to both create and populate a kingdom.
 
-  check = raw_input("Type 'random', or input your own name.")
+  check = raw_input("""
+                    Type 'random', or input your own name.
+                    """)
   
   if check == "random":
     kingdom_number = Kingdom(get_name("kingdom"))
@@ -143,7 +145,9 @@ def create_kingdom(kingdom_number):
   print("Now we have to populate it.")
   
 
-  number_of_children = raw_input("How many noble children will there be?")
+  number_of_children = raw_input("""
+                                 How many noble children will there be?
+                                 """)
 
 
   if number_of_children > 10:
@@ -158,7 +162,9 @@ def create_kingdom(kingdom_number):
     
 
 
-  number_of_landlords = raw_input("How many lords and ladies will ther be?")
+  number_of_landlords = raw_input("""
+                                  How many lords and ladies will ther be?
+                                  """)
 
 
   if number_of_landlords > 20:
@@ -199,7 +205,9 @@ print("""
 
 create_kingdom("kingdom_1")
 
-amount_new = raw_input("How many more Kingdoms would you like to add?")
+amount_new = raw_input("""
+                       How many more Kingdoms would you like to add?
+                       """)
 
 for i in range(2, amount_new + 1):
   create_kingdom("kingdom_" + str(i))
