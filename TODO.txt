@@ -19,7 +19,7 @@ Random titles as prefixes/subfixes. (Needs text file and kinks worked out.)
 
 Planned features:
 
-
+Make it so that two locations or people can't have the same exact name.
 Random revolutions, usurping.
 Random war names.
 Random war between Kingdoms.
@@ -45,3 +45,5 @@ Generate number-of-actions-per-year algorithm.
 
 IMPORTANT
 Implement current set of functions and classes into a working logic-loop.
+-For debugging
+-For general testing
