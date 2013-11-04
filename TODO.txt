@@ -1,6 +1,3 @@
-Todo: Get a basic working program going, and then add in text files of various names and keywords.
-
-
 Finished Features:
 
 ---------------------------
@@ -16,13 +13,14 @@ Random names for influential people below nobility. (Done, but needs text file.)
 -Those that sleep with nobility
 -Those that kill nobility
 
+Random titles as prefixes/subfixes. (Needs text file and kinks worked out.)
+
 ---------------------------
 
 Planned features:
 
-Figure out how to include multiples of Objects within a Kingdom. Shouldn't be too hard.
+
 Random revolutions, usurping.
-Random titles as prefixes/subfixes.
 Random war names.
 Random war between Kingdoms.
 Random trade between Kingdoms.
@@ -44,3 +42,6 @@ Incorporate the GUI using tkinter.
 Decide on a final design for the GUI.
 Decide on the output, whether it be text file or in-window/console.
 Generate number-of-actions-per-year algorithm.
+
+IMPORTANT
+Implement current set of functions and classes into a working logic-loop.
