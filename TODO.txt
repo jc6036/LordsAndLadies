@@ -15,7 +15,7 @@ Random names for influential people below nobility. (Done, but needs text file.)
 -Those that sleep with nobility
 -Those that kill nobility
 
-Random titles as prefixes/subfixes. (Needs text file and kinks worked out.)
+Random titles as prefixes/subfixes. (Needs text file. Function is in, not implemented.)
 
 IMPORTANT
 Implementing current set of functions and classes into a working logic-loop.
@@ -53,3 +53,7 @@ Incorporate the GUI using tkinter.
 Decide on a final design for the GUI.
 Decide on the output, whether it be text file or in-window/console.
 Generate number-of-actions-per-year algorithm.
+
+Basic User Input: Number of kingdoms, Number of years of drama to generate.
+-Possible expansion on user definitions after everything is done.
+-More customization for the kingdoms/drama, or insertions of specific names by user.
