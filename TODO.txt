@@ -17,6 +17,9 @@ Random names for influential people below nobility. (Done, but needs text file.)
 
 Random titles as prefixes/subfixes. (Needs text file. Function is in, not implemented.)
 
+Make it so that two locations or people can't have the same exact name.
+(Function made, still needs implemented. No names the same globally.)
+
 IMPORTANT
 Implementing current set of functions and classes into a working logic-loop.
 -For debugging
@@ -30,7 +33,6 @@ BE SURE TO spruce up the main logic after all of the text files are already adde
 
 Planned features:
 
-Make it so that two locations or people can't have the same exact name.
 Random revolutions, usurping.
 Random war names.
 Random war between Kingdoms.
