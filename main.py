@@ -73,18 +73,30 @@ class Person(object, name, name_type):
     name = self.name
     name_type = self.name_type
 
-  def title_get(self, name_type):
-    if name_type == "nobility":
-      with open("placeholder", -r) as opened_file:
-        lines = opened_file.readline()
-        return lines[randint(1, 51)]
 
-    elif name_type == "influential":
-      with open("placeholder", -r) as opened_file:
-        lines = opened_file.readline()
-        return lines[randint(1, 51)]
-#Grabs titles for the names of people.
+  def title_get(self, place, name_type):
+    if place == "subfix":
+      if name_type == "nobility":
+        with open("placeholder", -r) as opened_file:
+          lines = opened_file.readline()
+          return lines[randint(1, 51)]
 
+      elif name_type == "influential":
+        with open("placeholder", -r) as opened_file:
+          lines = opened_file.readline()
+          return lines[randint(1, 51)]
+ 
+    elif place == "prefix":
+      if name_type == "nobility":
+        with open("placeholder", -r) as opened_file:
+          lines = opened_file.readline()
+          return lines[randint(1, 51)]
+
+      elif name_type == "influential":
+        with open("placeholder", -r) as opened_file:
+          lines = opened_file.readline()
+          return lines[randint(1, 51)]
+#Grabs titles for people as prefixes/subfixes
 
 class Nobility(Person, name, job):
   """Specific actions for Nobility."""
@@ -107,21 +119,46 @@ class InfluentialPerson(Person, name, job):
 
 
 
+namelist = []
+
+
+def dupe_check(namelist, name):
+
+  for i in namelist:
+    if name == i:
+      return True
+    else:
+      return False
+#For seeing if a name is already in use.
+
+
 def get_name(name_type): 
   if name_type == "kingdom":
     with open("placeholder", -r) as opened_file:
       lines = opened_file.readlines()
-      return lines[randint(0, 201)]
+      chosen_line = lines[randint(0, 201)]
+      while dupe_check(namelist, chosen_line):
+        chosen_line = lines[randint(0, 201)]
+      else:
+        return chosen_line
 
   elif name_type == "location":
     with open("placeholder", -r) as opened_file:
       lines = opened_file.readlines()
-      return lines[randint(0, 201)]
+      chosen_line = lines[randint(0, 201)]
+      while dupe_check(namelist, chosen_line):
+        chosen_line = lines[randint(0, 201)]
+      else:
+        return chosen_line
 
   elif name_type == "person":
     with open("placeholder", -r) as opened_file:
       lines = opened_file.readlines()
-      return lines[randint(0, 201)]
+      chosen_line = lines[randint(0, 201)]
+      while dupe_check(namelist, chosen_line):
+        chosen_line = lines[randint(0, 201)]
+      else:
+        return chosen_line
 #Use this for random names at creation of place or person.
 
 
@@ -134,49 +171,38 @@ def create_kingdom(kingdom_number):
   
   if check == "random":
     kingdom_number = Kingdom(get_name("kingdom"))
-    
   else:
     kingdom_number = Kingdom(check)
   kingdom_number.populate_king_queen()
   
-
   print("The king of your kingdom is ", kingdom_one.king, ".")
   print("The queen of your kingdom is ", kingdom_one.queen, ".")
   print("Now we have to populate it.")
   
-
   number_of_children = raw_input("""
                                  How many noble children will there be?
                                  """)
 
-
   if number_of_children > 10:
-    print("No more than ten.")
-    
+    print("No more than ten.")    
   elif number_of_children <= 10:
     for i in range(1, number_of_children):
       kingdom_number.populate_noble_children("child_" + str(i))
-      
   else:
     print("Input a number please.")
     
-
 
   number_of_landlords = raw_input("""
                                   How many lords and ladies will ther be?
                                   """)
 
-
   if number_of_landlords > 20:
     print("No more than twenty.")
-    
   elif number_of_landlords <= 20:
     for i in range(1, number_of_landlords + 1):
       kingdom_number.populate_landlords("landlord_" + str(i))
-      
   else:
     print("Numbers only, please.")
-
 
   number_of_locations = raw_input("""
                       How many locations? These are Villages, cities, and towns.
@@ -184,11 +210,9 @@ def create_kingdom(kingdom_number):
 
   if number_of_locations > 20:
     print("No more than twenty.")
-    
   elif number_of_locations >= 20:
     for i in range(1, number_of_locations + 1):
       kingdom_number.create_locations("location_" + str(i))
-
   else:
     print("Numbers only, please.")
 
