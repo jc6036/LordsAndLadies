@@ -1,6 +1,12 @@
 Finished Features:
 
 ---------------------------
+CURRENT GOALS:
+-Get dem text files full of names going
+-Fix the code so that the files work
+-Start working on single-kingdom drama
+
+---------------------------
 
 Partially Done:
 
