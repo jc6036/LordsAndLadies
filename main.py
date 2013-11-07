@@ -1,11 +1,9 @@
-########################
-#Lords and Ladies      #
-#v0.0.a9               #
-#Authored by jc6036    #
-#Python 3.2 with       #
-#Tkinter, ttk and      #
-#Random modules        #
-########################
+################################################
+#Lords and Ladies                              #
+#v0.0.b1                                       #
+#Authored by jc6036                            #
+#Python 3.2 with tkinter, ttk, and random      #
+################################################
 
 from random import randint
 from tkinter import *
