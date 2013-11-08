@@ -22,20 +22,16 @@ class Kingdom(object, name):
   def populate_noble_children(self, identifier):
     gender = ["male", "female"]
     chosen_gender = gender[randint(0, 2)]
-
     if chosen_gender == "male":
       identifier = Nobility(get_name("person"), "prince")
-
     elif chosen_gender == "female":
       identifier = Nobility(get_name("person"), "princess")
   
   def populate_landlords(self, identifier):
     gender = ["male", "female"]
     chosen_gender = gender[randint(0, 2)]
-
     if chosen_gender == "male":
       identifier = Nobility(get_name("person"), "lord")
-
     elif chosen_gender == "female":
       identifier = Nobility(get_name("person"), "lady")
   
@@ -43,13 +39,11 @@ class Kingdom(object, name):
     job = ["artisan", "blacksmith", "painter", "mathmetician",
            "inventor", "thief", "bandit", "alchemist"]
     chosen_job = job[randint(0, 9)]
-    
     identifier = InfluentialPerson(get_name("person"), chosen_job)
   
   def create_locations(self, identifier):
     places = ["village", "town", "city"]
     chosen_place = places[randint(0, 4)]
-    
     identifier = Location(get_name("location"), chosen_place)
 #For creation of Kingdoms/Population/Locations.
   
@@ -95,6 +89,7 @@ class Person(object, name, name_type):
           lines = opened_file.readline()
           return lines[randint(1, 51)]
 #Grabs titles for people as prefixes/subfixes
+
 
 class Nobility(Person, name, job):
   """Specific actions for Nobility."""
@@ -213,6 +208,7 @@ def create_kingdom(kingdom_number):
       kingdom_number.create_locations("location_" + str(i))
   else:
     print("Numbers only, please.")
+#Use for creation of kingdoms. Auto queries user-defined numbers.
 
 
 print("""
@@ -225,11 +221,3 @@ print("""
       Create your first kingdom to get started.
       """)
 
-create_kingdom("kingdom_1")
-
-amount_new = raw_input("""
-                       How many more Kingdoms would you like to add?
-                       """)
-
-for i in range(2, amount_new + 1):
-  create_kingdom("kingdom_" + str(i))
