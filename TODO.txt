@@ -65,3 +65,12 @@ Generate number-of-actions-per-year algorithm.
 Basic User Input: Number of kingdoms, Number of years of drama to generate.
 -Possible expansion on user definitions after everything is done.
 -More customization for the kingdoms/drama, or insertions of specific names by user.
+
+TEXT FILES NEEDED:
+-200 Male European First Names
+-200 Female European Last Names
+-200 European Last Names
+-25-50 Titles, prefixes and subfixes
+-200 European Settlement Names
+-50 Names For Wars
+-50 Names For Revolution
