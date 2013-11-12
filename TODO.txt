@@ -2,10 +2,8 @@ Finished Features:
 
 ---------------------------
 CURRENT GOALS:
--Get dem text files full of names going
--Fix the code so that the files work
--Start working on single-kingdom drama
-
+-Get Basic Program actually running with the current placeholder files
+--Simple kingdom and person within kingdom generation at the moment
 ---------------------------
 
 Partially Done:
@@ -27,9 +25,8 @@ Make it so that two locations or people can't have the same exact name.
 (Function made, still needs implemented. No names the same globally.)
 
 IMPORTANT
-Implementing current set of functions and classes into a working logic-loop.
--For debugging
--For general testing
+Get everything working and outputting to the proper file
+
 
 BE SURE TO spruce up the main logic after all of the text files are already added.
 -As it is, the get_name function calls are only using placeholders. Expanding upon these
