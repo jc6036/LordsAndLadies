@@ -9,6 +9,8 @@ CURRENT GOALS:
 --After simple names are finished, flesh out locations
 --After that, single-kingdom drama
 --After that, multi-kingdom drama
+
+IMMEDIATE: Get separate male and female text files sorted out.
 ---------------------------
 
 Partially Done:
