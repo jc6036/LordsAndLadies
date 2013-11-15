@@ -2,69 +2,68 @@
 #Lords and Ladies                              #
 #v0.0.b2                                       #
 #Authored by jc6036                            #
-#Python 3.2 with tkinter, ttk, and random      #
+#Python 3.2 with tkinter and random            #
 ################################################
 
 from random import randint
 from tkinter import *
-import ttk
 
-class Kingdom(object, name):
+class Kingdom(object):
   """Contains the kingdoms and fucntions to populate."""
   
   def __init__(self, name):
-    name = self.name
+    self.name = name
   
   def populate_king_queen(self):
-    king = Nobility(get_name("noble"), get_name("last"), "king")
-    queen = Nobility(get_name("noble"), get_name("last"), "queen")
+    self.king = Nobility(get_name("noble"), get_name("last"), "king")
+    self.queen = Nobility(get_name("noble"), get_name("last"), "queen")
   
   def populate_noble_children(self, identifier):
     gender = ["male", "female"]
-    chosen_gender = gender[randint(0, 2)]
+    chosen_gender = gender[randint(0, 1)]
     if chosen_gender == "male":
-      identifier = Nobility(get_name("noble"), get_name("last"), "prince")
+      self.identifier = Nobility(get_name("noble"), get_name("last"), "prince")
     elif chosen_gender == "female":
-      identifier = Nobility(get_name("noble"), get_name("last"), "princess")
+      self.identifier = Nobility(get_name("noble"), get_name("last"), "princess")
   
   def populate_landlords(self, identifier):
     gender = ["male", "female"]
-    chosen_gender = gender[randint(0, 2)]
+    chosen_gender = gender[randint(0, 1)]
     if chosen_gender == "male":
-      identifier = Nobility(get_name("noble"), get_name("last"), "lord")
+      self.identifier = Nobility(get_name("noble"), get_name("last"), "lord")
     elif chosen_gender == "female":
-      identifier = Nobility(get_name("noble"), get_name("last"), "lady")
+      self.identifier = Nobility(get_name("noble"), get_name("last"), "lady")
   
   def populate_important_person(self, identifier):
     job = ["artisan", "blacksmith", "painter", "mathmetician",
            "inventor", "thief", "bandit", "alchemist"]
-    chosen_job = job[randint(0, 9)]
-    identifier = InfluentialPerson(get_name("common"), get_name("last"), chosen_job)
+    chosen_job = job[randint(0, 8)]
+    self.identifier = InfluentialPerson(get_name("common"), get_name("last"), chosen_job)
   
   def create_locations(self, identifier):
     places = ["village", "town", "city"]
-    chosen_place = places[randint(0, 4)]
-    identifier = Location(get_name("location"), chosen_place)
+    chosen_place = places[randint(0, 3)]
+    self.identifier = Location(get_name("location"), chosen_place)
 #For creation of Kingdoms/Population/Locations.
   
 
-class Location(Kingdom, name, variation):
+class Location(Kingdom):
   """Various functions for locations in kingdoms"""
   #Variation == village, town, city, or castle.
   
   def __init__(self, name, variation):
-    name = self.name
-    variation = self.variation
+    self.name = name
+    self.variation = variation
 #Location functions.
 
 
-class Person(object, name, name_type, title):
+class Person(object):
   """Function holder for people."""
   
   def __init__(self, name, name_type, title):
-    name = self.name
-    name_type = self.name_type
-    title = self.title
+    self.name = name
+    self.name_type = name_type
+    self.title = title
 
 
   def title_get(self, place, name_type):
@@ -92,26 +91,26 @@ class Person(object, name, name_type, title):
 #Grabs titles for people as prefixes/subfixes
 
 
-class Nobility(Person, name, last_name, job):
+class Nobility(Person):
   """Specific actions for Nobility."""
   
   name_type = "nobility"
   
   def __init__(self, name, last_name, job):
-    name = self.name
-    job = self.job
-    last_name = self.last_name
+    self.name = name
+    self.job = job
+    self.last_name = last_name
 
 
-class InfluentialPerson(Person, name, last_name, job):
+class InfluentialPerson(Person):
   """Specific actions for Influential People."""
   
   name_type = "influential"
   
   def __init__(self, name, last_name, job):
-    name = self.name
-    job = self.job
-    last_name = self.last_name
+    self.name = name
+    self.job = job
+    self.last_name = last_name
 
 
 
@@ -132,9 +131,9 @@ def get_name(name_type):
   if name_type == "kingdom":
     with open("./Resources/kingdom_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, 201)]
+      chosen_line = lines[randint(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, 201)]
+        chosen_line = lines[randint(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -142,9 +141,9 @@ def get_name(name_type):
   elif name_type == "location":
     with open("./Resources/location_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, 201)]
+      chosen_line = lines[randint(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, 201)]
+        chosen_line = lines[randint(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -152,9 +151,9 @@ def get_name(name_type):
   elif name_type == "noble":
     with open("./Resources/noble_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, 201)]
+      chosen_line = lines[randint(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, 201)]
+        chosen_line = lines[randint(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -162,9 +161,9 @@ def get_name(name_type):
   elif name_type == "common":
     with open("./Resources/common_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, 201)]
+      chosen_line = lines[randint(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, 201)]
+        chosen_line = lines[randint(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -172,9 +171,9 @@ def get_name(name_type):
   elif name_type == "last":
     with open("./Resources/last_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, 201)]
+      chosen_line = lines[randint(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, 201)]
+        chosen_line = lines[randint(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -196,8 +195,8 @@ def create_kingdom(kingdom_number):
     kingdom_number = Kingdom(check)
   kingdom_number.populate_king_queen()
   
-  print("The king of your kingdom is ", kingdom_one.king, ".")
-  print("The queen of your kingdom is ", kingdom_one.queen, ".")
+  print("The king of your kingdom is ", kingdom_number.king, ".")
+  print("The queen of your kingdom is ", kingdom_number.queen, ".")
   print("Now we have to populate it.")
   
   number_of_children = raw_input("""
@@ -237,3 +236,22 @@ def create_kingdom(kingdom_number):
   else:
     print("Numbers only, please.")
 #Use for creation of kingdoms. Auto queries user-defined numbers.
+
+Test_Kingdom = Kingdom("Test_Kingdom")
+#Keep the children in a list? Use list comprehension?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
