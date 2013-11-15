@@ -17,6 +17,7 @@ class Kingdom(object):
   def populate_king_queen(self):
     self.king = Nobility(get_name("noble"), get_name("last"), "king")
     self.queen = Nobility(get_name("noble"), get_name("last"), "queen")
+#Add king and queen objects to kingdom
   
   def populate_noble_children(self, identifier):
     gender = ["male", "female"]
@@ -25,7 +26,8 @@ class Kingdom(object):
       self.identifier = Nobility(get_name("noble"), get_name("last"), "prince")
     elif chosen_gender == "female":
       self.identifier = Nobility(get_name("noble"), get_name("last"), "princess")
-  
+#Add prince and princess objects to kingdom.  
+
   def populate_landlords(self, identifier):
     gender = ["male", "female"]
     chosen_gender = gender[randint(0, 1)]
@@ -33,18 +35,20 @@ class Kingdom(object):
       self.identifier = Nobility(get_name("noble"), get_name("last"), "lord")
     elif chosen_gender == "female":
       self.identifier = Nobility(get_name("noble"), get_name("last"), "lady")
-  
+#Add lords and lady objects to the kingdom.  
+
   def populate_important_person(self, identifier):
     job = ["artisan", "blacksmith", "painter", "mathmetician",
            "inventor", "thief", "bandit", "alchemist"]
     chosen_job = job[randint(0, 8)]
     self.identifier = InfluentialPerson(get_name("common"), get_name("last"), chosen_job)
-  
+#Add influential people objects to the kingdom 
+ 
   def create_locations(self, identifier):
     places = ["village", "town", "city"]
     chosen_place = places[randint(0, 3)]
     self.identifier = Location(get_name("location"), chosen_place)
-#For creation of Kingdoms/Population/Locations.
+#Add location objects to the kingdom.
   
 
 class Location(Kingdom):
@@ -67,24 +71,24 @@ class Person(object):
 
 
   def title_get(self, place, name_type):
-    if place == "subfix":
-      if name_type == "nobility":
+    if place == "subfix":    #Grab sufixes
+      if name_type == "nobility": #Noble sufixes
         with open("placeholder", -r) as opened_file:
           lines = opened_file.readline()
           title = lines[randint(1, 51)]
 
-      elif name_type == "influential":
+      elif name_type == "influential": #Commoner sufixes
         with open("placeholder", -r) as opened_file:
           lines = opened_file.readline()
           title = lines[randint(1, 51)]
  
-    elif place == "prefix":
-      if name_type == "nobility":
+    elif place == "prefix":   #Grab prefixes
+      if name_type == "nobility": #Noble Prefixes
         with open("placeholder", -r) as opened_file:
           lines = opened_file.readline()
           title = lines[randint(1, 51)]
 
-      elif name_type == "influential":
+      elif name_type == "influential": #Commoner prefixes
         with open("placeholder", -r) as opened_file:
           lines = opened_file.readline()
           title = lines[randint(1, 51)]
@@ -93,8 +97,6 @@ class Person(object):
 
 class Nobility(Person):
   """Specific actions for Nobility."""
-  
-  name_type = "nobility"
   
   def __init__(self, name, last_name, job):
     self.name = name
@@ -105,8 +107,6 @@ class Nobility(Person):
 class InfluentialPerson(Person):
   """Specific actions for Influential People."""
   
-  name_type = "influential"
-  
   def __init__(self, name, last_name, job):
     self.name = name
     self.job = job
@@ -114,7 +114,7 @@ class InfluentialPerson(Person):
 
 
 
-namelist = []
+namelist = []  #Used names are added to this
 
 
 def dupe_check(namelist, name):
@@ -184,6 +184,7 @@ def get_name(name_type):
 def create_kingdom(kingdom_number):
 #All-in-one function to both create and populate a kingdom.
 #Currently set up for debugging and testing
+#Not intended to be used at this point. Impending deletion.
 
   check = raw_input("""
                     Type 'random', or input your own name.
@@ -238,7 +239,10 @@ def create_kingdom(kingdom_number):
 #Use for creation of kingdoms. Auto queries user-defined numbers.
 
 Test_Kingdom = Kingdom("Test_Kingdom")
-#Keep the children in a list? Use list comprehension?
+Test_Kingdom.populate_noble_children()
+print(Test_Kingdom.Child_1.name)
+#Trying to figure out how to do populate_bahbla multiple times
+#Perhaps putting the objects in a list? Seems like a bad idea.
 
 
 
