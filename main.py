@@ -19,19 +19,28 @@ class Kingdom(object):
     self.queen = Nobility(get_name("noble"), get_name("last"), "queen")
 #Add king and queen objects to kingdom
   
-  def populate_noble_children(self, number_of, chosen_gender):
-    pass
+  def populate_noble_children(self, number_of, gender):
+    if gender == "male":
+      self.noble_males = [
+                     Nobility(get_name("noble", "male"), self.king.last_name,
+                     "prince") for i in range(0, number_of)
+                         ]
+    elif gender == "female":
+      self.noble_females = [
+                     Nobility(get_name("noble", "female"), self.king.last_name,
+                     "princes") for i in range(0, number_of)
+                           ]
 #Add prince and princess objects to kingdom.  
 
-  def populate_landlords(self, identifier):
+  def populate_landlords(self):
     pass
 #Add lords and lady objects to the kingdom.  
 
-  def populate_important_person(self, identifier):
+  def populate_important_person(self):
     pass
 #Add influential people objects to the kingdom 
  
-  def create_locations(self, identifier):
+  def create_locations(self):
     pass
 #Add location objects to the kingdom.
   
@@ -206,6 +215,11 @@ def create_kingdom(kingdom_number):
   print("Now we have to populate it.")
 
 Test_Kingdom = Kingdom("Test_Kingdom")
+Test_Kingdom.populate_king_queen()
+print(Test_Kingdom.king.last_name)
+Test_Kingdom.populate_noble_children(1, "female")
+print(Test_Kingdom.noble_females[0].last_name)
+
 #Trying to figure out how to make generation of populants dynamic
 #So that I can do it multiple times...
 
