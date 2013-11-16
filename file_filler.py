@@ -48,19 +48,33 @@ def fill_locations(filename, num_of_names):
 
 
 
-def fill_titles(filename, num_of_titles, fix):
+def fill_titles(filename, num_of_titles, fix, job_type):
   
-  if fix == "prefix":
-    with open("./%s" % str(filename), "w") as opened_file:
-      for i in range(1, num_of_titles + 1):
-        opened_file.write("Prefix_Title %s\n" % str(i))
+  if job_type == "noble":
+    if fix == "prefix":
+      with open("./%s" % str(filename), "w") as opened_file:
+        for i in range(1, num_of_titles + 1):
+          opened_file.write("Prefix_Title_Noble %s\n" % str(i))
 
-  elif fix == "subfix":
-    with open("./%s" % str(filename), "w") as opened_file:
-      for i in range(1, num_of_titles + 1):
-        opened_file.write("Subfix_Title %s\n" % str(i))
+    elif fix == "subfix":
+      with open("./%s" % str(filename), "w") as opened_file:
+        for i in range(1, num_of_titles + 1):
+          opened_file.write("Subfix_Title_Noble %s\n" % str(i))
+
+  elif job_type == "common":
+    if fix == "prefix":
+      with open("./%s" % str(filename), "w") as opened_file:
+        for i in range(1, num_of_titles + 1):
+          opened_file.write("Prefix_Title_Common %s\n" % str(i))
+
+    elif fix == "subfix":
+      with open("./%s" % str(filename), "w") as opened_file:
+        for i in range(1, num_of_titles + 1):
+          opened_file.write("Subfix_Title_Common %s\n" % str(i))
 
 
 
-fill_titles("title_subfixes.txt", 50, "subfix")
-fill_titles("title_prefixes.txt", 50, "prefix")
+fill_titles("noble_title_subfixes.txt", 50, "subfix", "noble")
+fill_titles("noble_title_prefixes.txt", 50, "prefix", "noble")
+fill_titles("common_title_subfixes.txt", 50, "subfix", "common")
+fill_titles("common_title_prefixes.txt", 50, "prefix", "common")
