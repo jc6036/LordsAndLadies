@@ -21,27 +21,52 @@ class Kingdom(object):
   
   def populate_noble_children(self, number_of, gender):
     if gender == "male":
-      self.noble_males = [
+      self.princes = [
                      Nobility(get_name("noble", "male"), self.king.last_name,
                      "prince") for i in range(0, number_of)
-                         ]
+                     ]
     elif gender == "female":
-      self.noble_females = [
+      self.princesses = [
                      Nobility(get_name("noble", "female"), self.king.last_name,
-                     "princes") for i in range(0, number_of)
-                           ]
+                     "princess") for i in range(0, number_of)
+                        ]
 #Add prince and princess objects to kingdom.  
 
-  def populate_landlords(self):
-    pass
+  def populate_landlords(self, number_of, gender):
+    if gender == "male":
+      self.lords = [
+                   Nobility(get_name("noble", "male"), get_name("last"),
+                   "lord") for i in range(0, number_of)
+                   ]
+    elif gender == "female":
+      self.ladies = [
+                    Nobility(get_name("noble", "female"), get_name("last"),
+                    "lady") for i in range(0, number_of)
+                    ]
 #Add lords and lady objects to the kingdom.  
 
-  def populate_important_person(self):
-    pass
+  def populate_important_person(self, number_of, gender):
+    jobs = ["blacksmith", "tailor", "farmer", "cobbler", "baker"]
+    if gender == "male":
+      self.important_males = [
+                              Commoner(get_name("common", "male"),
+                              get_name("last"), jobs[randint(0, 4)])
+                              for i in range(1, number_of)
+                             ]
+    elif gender == "female":
+      self.important_females = [
+                                Commoner(get_name("common", "female"),
+                                get_name("last"), jobs[randint(0, 4)])
+                                for i in range(1, number_of)
+                               ]
 #Add influential people objects to the kingdom 
  
-  def create_locations(self):
-    pass
+  def create_locations(self, number_of):
+    variations = ["town", "village", "city"]
+    self.locations = [
+                Location(get_name("location"), variations[randint(0, 2)])
+                for i in range(0, number_of)
+                ]
 #Add location objects to the kingdom.
   
 
@@ -98,8 +123,8 @@ class Nobility(Person):
     self.last_name = last_name
 
 
-class InfluentialPerson(Person):
-  """Specific actions for Influential People."""
+class Commoner(Person):
+  """Specific actions for Common People."""
   
   def __init__(self, name, last_name, job):
     self.name = name
@@ -193,36 +218,6 @@ def get_name(name_type, gender = "none"):
         namelist.append(chosen_line)
 
 #Use this for random names at creation of place or person.
-
-
-def create_kingdom(kingdom_number):
-#All-in-one function to both create and populate a kingdom.
-#Currently set up for debugging and testing
-#Not intended to be used at this point. Impending deletion.
-
-  check = raw_input("""
-                    Type 'random', or input your own name.
-                    """)
-  
-  if check == "random":
-    kingdom_number = Kingdom(get_name("kingdom"))
-  else:
-    kingdom_number = Kingdom(check)
-  kingdom_number.populate_king_queen()
-  
-  print("The king of your kingdom is ", kingdom_number.king, ".")
-  print("The queen of your kingdom is ", kingdom_number.queen, ".")
-  print("Now we have to populate it.")
-
-Test_Kingdom = Kingdom("Test_Kingdom")
-Test_Kingdom.populate_king_queen()
-print(Test_Kingdom.king.last_name)
-Test_Kingdom.populate_noble_children(1, "female")
-print(Test_Kingdom.noble_females[0].last_name)
-
-#Trying to figure out how to make generation of populants dynamic
-#So that I can do it multiple times...
-
 
 
 
