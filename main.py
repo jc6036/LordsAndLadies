@@ -19,35 +19,20 @@ class Kingdom(object):
     self.queen = Nobility(get_name("noble"), get_name("last"), "queen")
 #Add king and queen objects to kingdom
   
-  def populate_noble_children(self, identifier, indice):
-    gender = ["male", "female"]
-    chosen_gender = gender[randint(0, 1)]
-    if chosen_gender == "male":
-      self.identifier[indice] = Nobility(get_name("noble"), get_name("last"), "prince")
-    elif chosen_gender == "female":
-      self.identifier[indice] = Nobility(get_name("noble"), get_name("last"), "princess")
+  def populate_noble_children(self, number_of, chosen_gender):
+    pass
 #Add prince and princess objects to kingdom.  
 
   def populate_landlords(self, identifier):
-    gender = ["male", "female"]
-    chosen_gender = gender[randint(0, 1)]
-    if chosen_gender == "male":
-      self.identifier = Nobility(get_name("noble"), get_name("last"), "lord")
-    elif chosen_gender == "female":
-      self.identifier = Nobility(get_name("noble"), get_name("last"), "lady")
+    pass
 #Add lords and lady objects to the kingdom.  
 
   def populate_important_person(self, identifier):
-    job = ["artisan", "blacksmith", "painter", "mathmetician",
-           "inventor", "thief", "bandit", "alchemist"]
-    chosen_job = job[randint(0, 8)]
-    self.identifier = InfluentialPerson(get_name("common"), get_name("last"), chosen_job)
+    pass
 #Add influential people objects to the kingdom 
  
   def create_locations(self, identifier):
-    places = ["village", "town", "city"]
-    chosen_place = places[randint(0, 3)]
-    self.identifier = Location(get_name("location"), chosen_place)
+    pass
 #Add location objects to the kingdom.
   
 
@@ -149,7 +134,7 @@ def get_name(name_type, gender = "none"):
         namelist.append(chosen_line)
 
   elif name_type == "noble":
-    if gender == "male"
+    if gender == "male":
       with open("./Resources/male_noble_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
@@ -158,7 +143,7 @@ def get_name(name_type, gender = "none"):
         else:
           return chosen_line
           namelist.append(chosen_line)
-    elif gender == "female"
+    elif gender == "female":
       with open("./Resources/female_noble_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
@@ -169,7 +154,7 @@ def get_name(name_type, gender = "none"):
           namelist.append(chosen_line)
 
   elif name_type == "common":
-    if gender = "male"
+    if gender == "male":
       with open("./Resources/male_common_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
@@ -178,7 +163,7 @@ def get_name(name_type, gender = "none"):
         else:
           return chosen_line
           namelist.append(chosen_line)
-    elif gender = "female"
+    elif gender == "female":
       with open("./Resources/female_common_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
@@ -219,48 +204,10 @@ def create_kingdom(kingdom_number):
   print("The king of your kingdom is ", kingdom_number.king, ".")
   print("The queen of your kingdom is ", kingdom_number.queen, ".")
   print("Now we have to populate it.")
-  
-  number_of_children = raw_input("""
-                                 How many noble children will there be?
-                                 """)
-
-  if number_of_children > 10:
-    print("No more than ten.")    
-  elif number_of_children <= 10:
-    for i in range(1, number_of_children + 1):
-      kingdom_number.populate_noble_children("child_%s" % str(i))
-  else:
-    print("Input a number please.")
-    
-
-  number_of_landlords = raw_input("""
-                                  How many lords and ladies will ther be?
-                                  """)
-
-  if number_of_landlords > 20:
-    print("No more than twenty.")
-  elif number_of_landlords <= 20:
-    for i in range(1, number_of_landlords + 1):
-      kingdom_number.populate_landlords("landlord_%s" % str(i))
-  else:
-    print("Numbers only, please.")
-
-  number_of_locations = raw_input("""
-                      How many locations? These are Villages, cities, and towns.
-                                  """)
-
-  if number_of_locations > 20:
-    print("No more than twenty.")
-  elif number_of_locations >= 20:
-    for i in range(1, number_of_locations + 1):
-      kingdom_number.create_locations("location_%s" % str(i))
-  else:
-    print("Numbers only, please.")
-#Use for creation of kingdoms. Auto queries user-defined numbers.
 
 Test_Kingdom = Kingdom("Test_Kingdom")
-#Trying to figure out how to do populate_bahbla multiple times
-#Perhaps putting the objects in a list? Seems like a bad idea.
+#Trying to figure out how to make generation of populants dynamic
+#So that I can do it multiple times...
 
 
 
