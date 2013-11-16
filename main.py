@@ -92,25 +92,25 @@ class Person(object):
   def title_get(self, place, name_type):
     if place == "subfix":    #Grab sufixes
       if name_type == "nobility": #Noble sufixes
-        with open("placeholder", -r) as opened_file:
+        with open("./Resources/noble_title_subfixes.txt", "r") as opened_file:
           lines = opened_file.readline()
-          title = lines[randint(1, 51)]
+          self.title = lines[randint(1, 50)]
 
-      elif name_type == "influential": #Commoner sufixes
-        with open("placeholder", -r) as opened_file:
+      elif name_type == "influential": #Commoner subfixes
+        with open("./Resources/common_title_subfixes", "r") as opened_file:
           lines = opened_file.readline()
-          title = lines[randint(1, 51)]
+          self.title = lines[randint(1, 50)]
  
     elif place == "prefix":   #Grab prefixes
       if name_type == "nobility": #Noble Prefixes
-        with open("placeholder", -r) as opened_file:
+        with open("./Resources/noble_title_prefixes", "r") as opened_file:
           lines = opened_file.readline()
-          title = lines[randint(1, 51)]
+          self.title = lines[randint(1, 50)]
 
       elif name_type == "influential": #Commoner prefixes
-        with open("placeholder", -r) as opened_file:
+        with open("./Resources/common_title_prefixes", "r") as opened_file:
           lines = opened_file.readline()
-          title = lines[randint(1, 51)]
+          self.title = lines[randint(1, 50)]
 #Grabs titles for people as prefixes/subfixes
 
 
