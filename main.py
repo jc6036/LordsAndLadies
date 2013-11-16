@@ -1,6 +1,6 @@
 ################################################
 #Lords and Ladies                              #
-#v0.0.b2                                       #
+#v0.0.b3                                       #
 #Authored by jc6036                            #
 #Python 3.2 with tkinter and random            #
 ################################################
@@ -10,7 +10,7 @@ from tkinter import *
 
 class Kingdom(object):
   """Contains the kingdoms and fucntions to populate."""
-  
+
   def __init__(self, name):
     self.name = name
   
@@ -19,13 +19,13 @@ class Kingdom(object):
     self.queen = Nobility(get_name("noble"), get_name("last"), "queen")
 #Add king and queen objects to kingdom
   
-  def populate_noble_children(self, identifier):
+  def populate_noble_children(self, identifier, indice):
     gender = ["male", "female"]
     chosen_gender = gender[randint(0, 1)]
     if chosen_gender == "male":
-      self.identifier = Nobility(get_name("noble"), get_name("last"), "prince")
+      self.identifier[indice] = Nobility(get_name("noble"), get_name("last"), "prince")
     elif chosen_gender == "female":
-      self.identifier = Nobility(get_name("noble"), get_name("last"), "princess")
+      self.identifier[indice] = Nobility(get_name("noble"), get_name("last"), "princess")
 #Add prince and princess objects to kingdom.  
 
   def populate_landlords(self, identifier):
@@ -127,13 +127,13 @@ def dupe_check(namelist, name):
 #For seeing if a name is already in use.
 
 
-def get_name(name_type): 
+def get_name(name_type, gender = "none"): 
   if name_type == "kingdom":
     with open("./Resources/kingdom_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, len(lines))]
+      chosen_line = lines[randint(1, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, len(lines))]
+        chosen_line = lines[randint(1, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -141,39 +141,59 @@ def get_name(name_type):
   elif name_type == "location":
     with open("./Resources/location_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, len(lines))]
+      chosen_line = lines[randint(1, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, len(lines))]
+        chosen_line = lines[randint(1, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
 
   elif name_type == "noble":
-    with open("./Resources/noble_names.txt", "r") as opened_file:
-      lines = opened_file.readlines()
-      chosen_line = lines[randint(0, len(lines))]
-      while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, len(lines))]
-      else:
-        return chosen_line
-        namelist.append(chosen_line)
+    if gender == "male"
+      with open("./Resources/male_noble_names.txt", "r") as opened_file:
+        lines = opened_file.readlines()
+        chosen_line = lines[randint(1, len(lines))]
+        while dupe_check(namelist, chosen_line):
+          chosen_line = lines[randint(1, len(lines))]
+        else:
+          return chosen_line
+          namelist.append(chosen_line)
+    elif gender == "female"
+      with open("./Resources/female_noble_names.txt", "r") as opened_file:
+        lines = opened_file.readlines()
+        chosen_line = lines[randint(1, len(lines))]
+        while dupe_check(namelist, chosen_line):
+          chosen_line = lines[randint(1, len(lines))]
+        else:
+          return chosen_line
+          namelist.append(chosen_line)
 
   elif name_type == "common":
-    with open("./Resources/common_names.txt", "r") as opened_file:
-      lines = opened_file.readlines()
-      chosen_line = lines[randint(0, len(lines))]
-      while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, len(lines))]
-      else:
-        return chosen_line
-        namelist.append(chosen_line)
+    if gender = "male"
+      with open("./Resources/male_common_names.txt", "r") as opened_file:
+        lines = opened_file.readlines()
+        chosen_line = lines[randint(1, len(lines))]
+        while dupe_check(namelist, chosen_line):
+          chosen_line = lines[randint(1, len(lines))]
+        else:
+          return chosen_line
+          namelist.append(chosen_line)
+    elif gender = "female"
+      with open("./Resources/female_common_names.txt", "r") as opened_file:
+        lines = opened_file.readlines()
+        chosen_line = lines[randint(1, len(lines))]
+        while dupe_check(namelist, chosen_line):
+          chosen_line = lines[randint(1, len(lines))]
+        else:
+          return chosen_line
+          namelist.append(chosen_line)
 
   elif name_type == "last":
     with open("./Resources/last_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(0, len(lines))]
+      chosen_line = lines[randint(1, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(0, len(lines))]
+        chosen_line = lines[randint(1, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -239,8 +259,6 @@ def create_kingdom(kingdom_number):
 #Use for creation of kingdoms. Auto queries user-defined numbers.
 
 Test_Kingdom = Kingdom("Test_Kingdom")
-Test_Kingdom.populate_noble_children()
-print(Test_Kingdom.Child_1.name)
 #Trying to figure out how to do populate_bahbla multiple times
 #Perhaps putting the objects in a list? Seems like a bad idea.
 
