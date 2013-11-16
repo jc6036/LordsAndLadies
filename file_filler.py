@@ -48,7 +48,19 @@ def fill_locations(filename, num_of_names):
 
 
 
-fill_names("male_common_names.txt", 200, "common", "male")
-fill_names("female_common_names.txt", 200, "common", "female")
-fill_names("male_noble_names.txt", 200, "noble", "male")
-fill_names("female_noble_names.txt", 200, "noble", "male")
+def fill_titles(filename, num_of_titles, fix):
+  
+  if fix == "prefix":
+    with open("./%s" % str(filename), "w") as opened_file:
+      for i in range(1, num_of_titles + 1):
+        opened_file.write("Prefix_Title %s\n" % str(i))
+
+  elif fix == "subfix":
+    with open("./%s" % str(filename), "w") as opened_file:
+      for i in range(1, num_of_titles + 1):
+        opened_file.write("Subfix_Title %s\n" % str(i))
+
+
+
+fill_titles("title_subfixes.txt", 50, "subfix")
+fill_titles("title_prefixes.txt", 50, "prefix")
