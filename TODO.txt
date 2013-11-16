@@ -2,15 +2,9 @@ Finished Features:
 
 ---------------------------
 CURRENT GOALS:
--Get Basic Program actually running with the current placeholder files
---Simple kingdom and person within kingdom generation at the moment
---Locations after that
--Output Kingdom and its contents to a text file for revision
 --After simple names are finished, flesh out locations
 --After that, single-kingdom drama
 --After that, multi-kingdom drama
-
-IMMEDIATE: Get separate male and female text files sorted out.
 ---------------------------
 
 Partially Done:
