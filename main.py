@@ -15,8 +15,8 @@ class Kingdom(object):
     self.name = name
   
   def populate_king_queen(self):
-    self.king = Nobility(get_name("noble"), get_name("last"), "king")
-    self.queen = Nobility(get_name("noble"), get_name("last"), "queen")
+    self.king = Nobility(get_name("noble", "male"), get_name("last", "none"), "king")
+    self.queen = Nobility(get_name("noble", "female"), get_name("last", "none"), "queen")
 #Add king and queen objects to kingdom
   
   def populate_noble_children(self, number_of, gender):
@@ -35,13 +35,13 @@ class Kingdom(object):
   def populate_landlords(self, number_of, gender):
     if gender == "male":
       self.lords = [
-                   Nobility(get_name("noble", "male"), get_name("last"),
+                   Nobility(get_name("noble", "male"), get_name("last", "none"),
                    "lord") for i in range(0, number_of)
                    ]
     elif gender == "female":
       self.ladies = [
-                    Nobility(get_name("noble", "female"), get_name("last"),
-                    "lady") for i in range(0, number_of)
+                    Nobility(get_name("noble", "female"), get_name("last", "none"),
+                    "lady", "female") for i in range(0, number_of)
                     ]
 #Add lords and lady objects to the kingdom.  
 
@@ -50,13 +50,13 @@ class Kingdom(object):
     if gender == "male":
       self.important_males = [
                               Commoner(get_name("common", "male"),
-                              get_name("last"), jobs[randint(0, 4)])
+                              get_name("last", "none"), jobs[randint(0, 4)])
                               for i in range(1, number_of)
                              ]
     elif gender == "female":
       self.important_females = [
                                 Commoner(get_name("common", "female"),
-                                get_name("last"), jobs[randint(0, 4)])
+                                get_name("last", "none"), jobs[randint(0, 4)])
                                 for i in range(1, number_of)
                                ]
 #Add influential people objects to the kingdom 
@@ -64,7 +64,7 @@ class Kingdom(object):
   def create_locations(self, number_of):
     variations = ["town", "village", "city"]
     self.locations = [
-                Location(get_name("location"), variations[randint(0, 2)])
+                Location(get_name("location", "none"), variations[randint(0, 2)])
                 for i in range(0, number_of)
                 ]
 #Add location objects to the kingdom.
@@ -83,10 +83,11 @@ class Location(Kingdom):
 class Person(object):
   """Function holder for people."""
   
-  def __init__(self, name, name_type, title):
+  def __init__(self, name, name_type, title, gender):
     self.name = name
     self.name_type = name_type
     self.title = title
+    self.gender = gender
 
 
   def title_get(self, place, name_type):
@@ -94,23 +95,23 @@ class Person(object):
       if name_type == "nobility": #Noble sufixes
         with open("./Resources/noble_title_subfixes.txt", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, 50)]
+          self.title = lines[randint(1, len(lines))]
 
       elif name_type == "influential": #Commoner subfixes
         with open("./Resources/common_title_subfixes", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, 50)]
+          self.title = lines[randint(1, len(lines))]
  
     elif place == "prefix":   #Grab prefixes
       if name_type == "nobility": #Noble Prefixes
         with open("./Resources/noble_title_prefixes", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, 50)]
+          self.title = lines[randint(1, len(lines))]
 
       elif name_type == "influential": #Commoner prefixes
         with open("./Resources/common_title_prefixes", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, 50)]
+          self.title = lines[randint(1, len(lines))]
 #Grabs titles for people as prefixes/subfixes
 
 
@@ -146,30 +147,10 @@ def dupe_check(namelist, name):
 #For seeing if a name is already in use.
 
 
-def get_name(name_type, gender = "none"): 
-  if name_type == "kingdom":
-    with open("./Resources/kingdom_names.txt", "r") as opened_file:
-      lines = opened_file.readlines()
-      chosen_line = lines[randint(1, len(lines))]
-      while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(1, len(lines))]
-      else:
-        return chosen_line
-        namelist.append(chosen_line)
-
-  elif name_type == "location":
-    with open("./Resources/location_names.txt", "r") as opened_file:
-      lines = opened_file.readlines()
-      chosen_line = lines[randint(1, len(lines))]
-      while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(1, len(lines))]
-      else:
-        return chosen_line
-        namelist.append(chosen_line)
-
-  elif name_type == "noble":
-    if gender == "male":
-      with open("./Resources/male_noble_names.txt", "r") as opened_file:
+def get_name(name_type, gender):
+  if gender == "none":
+    if name_type == "kingdom":
+      with open("./Resources/kingdom_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
         while dupe_check(namelist, chosen_line):
@@ -177,7 +158,50 @@ def get_name(name_type, gender = "none"):
         else:
           return chosen_line
           namelist.append(chosen_line)
-    elif gender == "female":
+
+    elif name_type == "location":
+      with open("./Resources/location_names.txt", "r") as opened_file:
+        lines = opened_file.readlines()
+        chosen_line = lines[randint(1, len(lines))]
+        while dupe_check(namelist, chosen_line):
+          chosen_line = lines[randint(1, len(lines))]
+        else:
+          return chosen_line
+          namelist.append(chosen_line)
+
+    elif name_type == "last":
+      with open("./Resources/last_names.txt", "r") as opened_file:
+        lines = opened_file.readlines()
+        chosen_line = lines[randint(1, len(lines))]
+        while dupe_check(namelist, chosen_line):
+          chosen_line = lines[randint(1, len(lines))]
+        else:
+          return chosen_line
+          namelist.append(chosen_line)
+
+  elif gender == "male":
+    if name_type == "noble":
+        with open("./Resources/male_noble_names.txt", "r") as opened_file:
+          lines = opened_file.readlines()
+          chosen_line = lines[randint(1, len(lines))]
+          while dupe_check(namelist, chosen_line):
+            chosen_line = lines[randint(1, len(lines))]
+          else:
+            return chosen_line
+            namelist.append(chosen_line)
+
+    elif name_type == "common":
+        with open("./Resources/male_common_names.txt", "r") as opened_file:
+          lines = opened_file.readlines()
+          chosen_line = lines[randint(1, len(lines))]
+          while dupe_check(namelist, chosen_line):
+            chosen_line = lines[randint(1, len(lines))]
+          else:
+            return chosen_line
+            namelist.append(chosen_line)
+
+  elif gender == "female":
+    if name_type == "noble":
       with open("./Resources/female_noble_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
@@ -187,17 +211,8 @@ def get_name(name_type, gender = "none"):
           return chosen_line
           namelist.append(chosen_line)
 
-  elif name_type == "common":
-    if gender == "male":
-      with open("./Resources/male_common_names.txt", "r") as opened_file:
-        lines = opened_file.readlines()
-        chosen_line = lines[randint(1, len(lines))]
-        while dupe_check(namelist, chosen_line):
-          chosen_line = lines[randint(1, len(lines))]
-        else:
-          return chosen_line
-          namelist.append(chosen_line)
-    elif gender == "female":
+
+    elif name_type == "common":
       with open("./Resources/female_common_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
         chosen_line = lines[randint(1, len(lines))]
@@ -207,18 +222,13 @@ def get_name(name_type, gender = "none"):
           return chosen_line
           namelist.append(chosen_line)
 
-  elif name_type == "last":
-    with open("./Resources/last_names.txt", "r") as opened_file:
-      lines = opened_file.readlines()
-      chosen_line = lines[randint(1, len(lines))]
-      while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(1, len(lines))]
-      else:
-        return chosen_line
-        namelist.append(chosen_line)
-
 #Use this for random names at creation of place or person.
 
+Test_Kingdom = Kingdom("Test")
+Test_Kingdom.populate_king_queen()
+print(Test_Kingdom.king.name)
+print(Test_Kingdom.queen.name)
+print(Test_Kingdom.queen.last_name)
 
 
 

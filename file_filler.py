@@ -74,7 +74,4 @@ def fill_titles(filename, num_of_titles, fix, job_type):
 
 
 
-fill_titles("noble_title_subfixes.txt", 50, "subfix", "noble")
-fill_titles("noble_title_prefixes.txt", 50, "prefix", "noble")
-fill_titles("common_title_subfixes.txt", 50, "subfix", "common")
-fill_titles("common_title_prefixes.txt", 50, "prefix", "common")
+fill_names("female_noble_names.txt", 200, "noble", "female")
