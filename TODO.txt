@@ -10,9 +10,7 @@ CURRENT GOALS:
 Partially Done:
 
 Random Names for everybody (still needs real text file)
-Random titles
--Title function needs to be worked on
--Need placeholder title text file
+Random titles (Need the real text file)
 Location Prefixes
 -Need to get textfile up and running for this as well as get locations going
 Locations -- Class needs to be expanded upon and prefixes need put in place
@@ -52,7 +50,8 @@ TEXT FILES NEEDED:
 -200 Male European First Names
 -200 Female European Last Names
 -200 European Last Names
--25-50 Titles, prefixes and subfixes
+-25-50 Titles, prefixes and subfixes.
+--Both Royal and Commoner titles
 -200 European Settlement Names
 -50 Names For Wars
 -50 Names For Revolution
