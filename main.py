@@ -111,6 +111,13 @@ class Location(Kingdom):
 
   alive = True
 
+  people = {
+            "lord": [],
+            "lady": [],
+            "important_males": [],
+            "important_females":[],
+  }
+
 
   def get_population(self, loc_type): #Determine population in a location.
     if loc_type == "town":
@@ -132,6 +139,12 @@ class Location(Kingdom):
       self.name = "City %s" % name
     elif variation == "castle":
       self.name = "Castle %s" % name
+
+
+  def get_local_people(self, num_of_male, num_of_female):
+    self.populate_landlords(1, ["male", "female"][randint(0, 1)])
+    self.populate_important_person(num_of_male, "male")
+    self.populate_important_person(num_of_female, "female")
 
 
 class Person(object):
