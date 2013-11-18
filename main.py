@@ -87,6 +87,24 @@ class Kingdom(object):
 #Add location objects to the kingdom.
 
 
+def populate_kingdom(args):
+#Args is number of male children, female children, lords,
+#ladies, male commoners, then female commoners. Use integers.
+  self.populate_king_queen()
+  self.populate_noble_children(args[0], "male")
+  self.populate_noble_children(args[1], "female")
+  self.populate_landlords(args[2], "male")
+  self.populate_landlords(args[3], "female")
+  self.populate_important_person(args[4], "male")
+  self.populate_important_person(args[5], "female")
+  self.people[male_children] = self.princes
+  self.people[female_children] = self.princesses
+  self.people[lords] = self.lords
+  self.people[ladies] = self.ladies
+  self.people[important_males] = self.important_males
+  self.people[important_females] = self.important_females
+
+
   def get_location_populations(self):
     for i in self.locations:
       i.get_population(variation)
@@ -112,8 +130,7 @@ class Location(Kingdom):
   alive = True
 
   people = {
-            "lord": [],
-            "lady": [],
+            "landlord": [],
             "important_males": [],
             "important_females":[],
   }
@@ -142,9 +159,16 @@ class Location(Kingdom):
 
 
   def get_local_people(self, num_of_male, num_of_female):
-    self.populate_landlords(1, ["male", "female"][randint(0, 1)])
+    random_gender = ["male", "female"][randint(0, 1)]
+    self.populate_landlords(1, random_gender)
     self.populate_important_person(num_of_male, "male")
     self.populate_important_person(num_of_female, "female")
+    if random_gender == "male":
+      self.people[landlord] = self.lords
+    elif random_gender == "female":
+      self.people[landlord] = self.ladies
+    self.people[important_males] = self.important_males
+    self.people[important_femaels] = self.important_females
 
 
 class Person(object):
@@ -262,26 +286,10 @@ def get_name(name_type, gender):
         else:
           return chosen_line
           namelist.append(chosen_line)
-
-
-def populate_kingdom(kingdom, args):
-#Args is male children, female children, lords, ladies,
-#male commoners, then female commoners. Use integers.
-  kingdom.populate_king_queen()
-  kingdom.populate_noble_children(args[0], "male")
-  kingdom.populate_noble_children(args[1], "female")
-  kingdom.populate_landlords(args[2], "male")
-  kingdom.populate_landlords(args[3], "female")
-  kingdom.populate_important_person(args[4], "male")
-  kingdom.populate_important_person(args[5], "female")
-  kingdom.people[male_children] = princes
-  kingdom.people[female_children] = princesses
-  kingdom.people[lords] = lords
-  kingdom.people[ladies] = ladies
-  kingdom.people[important_males] = important_males
-  kingdom.people[important_females] = important_females
-
 #Use this for random names at creation of place or person.
+
+
+
 #Kingdoms and locations can be destroyed or deserted if enough people dead
 
 
