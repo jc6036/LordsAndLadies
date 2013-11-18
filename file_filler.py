@@ -63,6 +63,7 @@ def fill_titles(filename, num_of_titles, fix, job_type):
           opened_file.write("Subfix_Title_Common %s\n" % str(i))
 
 
-fill_names("male_names.txt", 200, "first", "male")
-fill_names("female_names.txt", 200, "first", "female")
+fill_names("male_names.txt", 500, "first", "male")
+fill_names("female_names.txt", 500, "first", "female")
+fill_names("last_names.txt", 250, "last", "none")
 

@@ -2,7 +2,6 @@ Finished Features:
 
 ---------------------------
 CURRENT GOALS:
---After simple names are finished, flesh out locations
 ---Get populations in (Total populatation for kingdom needs done still)
 ---Allow stuff to be destroyed if it's pop gets low enough
 --Start genning and get managing lists of objects for each kingdom
@@ -13,10 +12,10 @@ CURRENT GOALS:
 Partially Done:
 
 Random Names for everybody (still needs real text file)
+
 Random titles (Need the real text file)
-Location Prefixes
--Need to get textfile up and running for this as well as get locations going
-Locations -- Class needs to be expanded upon and prefixes need put in place
+-Need to get textfile up and running for this
+Locations (need actual text files now)
 
 ---------------------------
 
@@ -50,12 +49,11 @@ Basic User Input: Number of kingdoms, Number of years of drama to generate.
 -More customization for the kingdoms/drama, or insertions of specific names by user.
 
 TEXT FILES NEEDED:
--200 Male European First Names
--200 Female European Last Names
--200 European Last Names
+-500 Male European First Names
+-500 Female European Last Names
+-250 European Last Names
 -25-50 Titles, prefixes and subfixes.
 --Both Royal and Commoner titles
 -200 European Settlement Names
 -50 Names For Wars
 -50 Names For Revolution
--Several prefixes for locations (ville, burg, castle, etc)
