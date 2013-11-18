@@ -1,6 +1,6 @@
 ################################################
 #Lords and Ladies                              #
-#v0.0.b3                                       #
+#v0.0.b4                                       #
 #Authored by jc6036                            #
 #Python 3.2 with tkinter and random            #
 ################################################
@@ -17,26 +17,26 @@ class Kingdom(object):
   def populate_king_queen(self):
     self.king = Nobility(get_name("first", "male"), get_name("last", "none"), "king")
     self.queen = Nobility(get_name("first", "female"), get_name("last", "none"), "queen")
-#Add king and queen objects to kingdom
+#Add king and queen objects to kingdom. Only one each per kingdom.
   
   def populate_noble_children(self, number_of, gender):
     if gender == "male":
       self.princes = [
-                     Nobility(get_name("first", "male"), self.king.last_name,
-                     "prince") for i in range(0, number_of)
+                    Nobility(get_name("first", "male"), self.king.last_name,
+                    "prince") for i in range(0, number_of)
                      ]
     elif gender == "female":
       self.princesses = [
-                     Nobility(get_name("first", "female"), self.king.last_name,
-                     "princess") for i in range(0, number_of)
+                    Nobility(get_name("first", "female"), self.king.last_name,
+                    "princess") for i in range(0, number_of)
                         ]
 #Add prince and princess objects to kingdom.  
 
   def populate_landlords(self, number_of, gender):
     if gender == "male":
       self.lords = [
-                   Nobility(get_name("first", "male"), get_name("last", "none"),
-                   "lord") for i in range(0, number_of)
+                    Nobility(get_name("first", "male"), get_name("last", "none"),
+                    "lord") for i in range(0, number_of)
                    ]
     elif gender == "female":
       self.ladies = [
@@ -49,24 +49,25 @@ class Kingdom(object):
     jobs = ["blacksmith", "tailor", "farmer", "cobbler", "baker"]
     if gender == "male":
       self.important_males = [
-                              Commoner(get_name("first", "male"),
-                              get_name("last", "none"), jobs[randint(0, 4)])
-                              for i in range(1, number_of)
+                    Commoner(get_name("first", "male"),
+                    get_name("last", "none"), jobs[randint(0, 4)])
+                    for i in range(1, number_of)
                              ]
     elif gender == "female":
       self.important_females = [
-                                Commoner(get_name("first", "female"),
-                                get_name("last", "none"), jobs[randint(0, 4)])
-                                for i in range(1, number_of)
+                    Commoner(get_name("first", "female"),
+                    get_name("last", "none"), jobs[randint(0, 4)])
+                    for i in range(1, number_of)
                                ]
 #Add influential people objects to the kingdom 
  
   def create_locations(self, number_of):
     variations = ["town", "village", "city"]
     self.locations = [
-                Location(get_name("location", "none"), variations[randint(0, 2)])
-                for i in range(0, number_of)
-                ]
+                    Location(get_name("location", "none"), variations[randint(0, 2)])
+                    for i in range(0, number_of)
+                     ]
+#Total population can be determined after lists of objects are in
 #Add location objects to the kingdom.
   
 
@@ -77,18 +78,28 @@ class Location(Kingdom):
   def __init__(self, name, variation):
     self.name = name
     self.variation = variation
+
+  def get_population(loc_type): #Determine population in a location.
+    if loc_type == "town":
+      self.population = randint(300, 1000)
+
+    elif loc_type == "village":
+      self.population = randint(20, 300)
+  
+    elif loc_type == "city":
+      self.population = randint(1000, 5000)
 #Location functions.
 
 
 class Person(object):
   """Function holder for people."""
   
-  def __init__(self, name, name_type, title, gender):
+  def __init__(self, name, name_type, gender):
     self.name = name
-    self.name_type = name_type
-    self.title = title
-    self.gender = gender
+    self.name_type = name_type  #Determines some stuff with get_name
+    self.gender = gender        #Mores stuff with get_name
 
+  alive = True
 
   def title_get(self, place, name_type):
     if place == "subfix":    #Grab sufixes
@@ -202,12 +213,10 @@ def get_name(name_type, gender):
           namelist.append(chosen_line)
 
 #Use this for random names at creation of place or person.
-
-Test_Kingdom = Kingdom("Test")
-Test_Kingdom.populate_king_queen()
-print(Test_Kingdom.king.name)
-print(Test_Kingdom.queen.name)
-print(Test_Kingdom.queen.last_name)
+#Put objects into lists for each kingdom for random retrieval.
+#Objects have statuses on whether or not something happened, they are alive, etc.
+#Kingdoms and locations have populations
+#Kingdoms and locations can be destroyed or deserted if enough people dead
 
 
 
