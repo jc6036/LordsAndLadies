@@ -5,7 +5,7 @@
 #Python 3.2 with tkinter and random            #
 ################################################
 
-from random import randint
+from random import randrange
 from tkinter import *
 
 class Kingdom(object):
@@ -30,6 +30,7 @@ class Kingdom(object):
     self.queen = Nobility(get_name("first", "female"), get_name("last", "none"), "queen")
 #Add king and queen objects to kingdom. Only one each per kingdom.
   
+
   def populate_noble_children(self, number_of, gender):
     if gender == "male":
       self.princes = [
@@ -55,7 +56,7 @@ class Kingdom(object):
     elif gender == "female":
       self.ladies = [
                     Nobility(get_name("first", "female"), get_name("last", "none"),
-                    "lady", "female") for i in range(0, number_of)
+                    "lady") for i in range(0, number_of)
   ]
 #Add lords and lady objects to the kingdom.  
 
@@ -65,14 +66,14 @@ class Kingdom(object):
     if gender == "male":
       self.important_males = [
                     Commoner(get_name("first", "male"),
-                    get_name("last", "none"), jobs[randint(0, 4)])
+                    get_name("last", "none"), jobs[randrange(0, 4)])
                     for i in range(1, number_of)
   ]
 
     elif gender == "female":
       self.important_females = [
                     Commoner(get_name("first", "female"),
-                    get_name("last", "none"), jobs[randint(0, 4)])
+                    get_name("last", "none"), jobs[randrange(0, 4)])
                     for i in range(1, number_of)
   ]
 #Add influential people objects to the kingdom 
@@ -81,28 +82,28 @@ class Kingdom(object):
   def create_locations(self, number_of):
     variations = ["town", "village", "city", "castle"]
     self.locations = [
-                    Location(get_name("location", "none"), variations[randint(0, 3)])
+                    Location(get_name("location", "none"), variations[randrange(0, 3)])
                     for i in range(0, number_of)
   ]
 #Add location objects to the kingdom.
 
 
-def populate_kingdom(args):
+  def populate_kingdom(self, *args):
 #Args is number of male children, female children, lords,
 #ladies, male commoners, then female commoners. Use integers.
-  self.populate_king_queen()
-  self.populate_noble_children(args[0], "male")
-  self.populate_noble_children(args[1], "female")
-  self.populate_landlords(args[2], "male")
-  self.populate_landlords(args[3], "female")
-  self.populate_important_person(args[4], "male")
-  self.populate_important_person(args[5], "female")
-  self.people[male_children] = self.princes
-  self.people[female_children] = self.princesses
-  self.people[lords] = self.lords
-  self.people[ladies] = self.ladies
-  self.people[important_males] = self.important_males
-  self.people[important_females] = self.important_females
+    self.populate_king_queen()
+    self.populate_noble_children(args[0], "male")
+    self.populate_noble_children(args[1], "female")
+    self.populate_landlords(args[2], "male")
+    self.populate_landlords(args[3], "female")
+    self.populate_important_person(args[4], "male")
+    self.populate_important_person(args[5], "female")
+    self.people["male_children"] = self.princes
+    self.people["female_children"] = self.princesses
+    self.people["lords"] = self.lords
+    self.people["ladies"] = self.ladies
+    self.people["important_males"] = self.important_males
+    self.people["important_females"] = self.important_females
 
 
   def get_location_populations(self):
@@ -136,39 +137,44 @@ class Location(Kingdom):
   }
 
 
-  def get_population(self, loc_type): #Determine population in a location.
-    if loc_type == "town":
-      self.population = randint(300, 1000)
-    elif loc_type == "village":
-      self.population = randint(20, 300)
-    elif loc_type == "city":
-      self.population = randint(1000, 5000)
-    elif loc_type == "castle":
-      self.population = randint(5000, 10000)
+  def get_population(self): #Determine population in a location.
+    if self.variation == "town":
+      self.population = randrange(300, 1000)
+    elif self.variation  == "village":
+      self.population = randrange(20, 300)
+    elif self.variation  == "city":
+      self.population = randrange(1000, 5000)
+    elif self.variation  == "castle":
+      self.population = randrange(5000, 10000)
+
+
+  def living_check(self):
+    if self.population <= 0:
+      self.alive = False
 
 
   def get_full_name(self):
-    if variation == "village":
-      self.name = "Village %s" % name
-    elif variation == "town":
-      self.name = "Town %s" % name
-    elif variation == "city":
-      self.name = "City %s" % name
-    elif variation == "castle":
-      self.name = "Castle %s" % name
+    if self.variation == "village":
+      self.name = "Village %s" % self.name
+    elif self.variation == "town":
+      self.name = "Town %s" % self.name
+    elif self.variation == "city":
+      self.name = "City %s" % self.name
+    elif self.variation == "castle":
+      self.name = "Castle %s" % self.name
 
 
   def get_local_people(self, num_of_male, num_of_female):
-    random_gender = ["male", "female"][randint(0, 1)]
+    random_gender = ["male", "female"][randrange(0, 1)]
     self.populate_landlords(1, random_gender)
     self.populate_important_person(num_of_male, "male")
     self.populate_important_person(num_of_female, "female")
     if random_gender == "male":
-      self.people[landlord] = self.lords
+      self.people["landlord"] = self.lords
     elif random_gender == "female":
-      self.people[landlord] = self.ladies
-    self.people[important_males] = self.important_males
-    self.people[important_femaels] = self.important_females
+      self.people["landlord"] = self.ladies
+    self.people["important_males"] = self.important_males
+    self.people["important_females"] = self.important_females
 
 
 class Person(object):
@@ -185,23 +191,23 @@ class Person(object):
       if name_type == "nobility":      #Noble sufixes
         with open("./Resources/noble_title_subfixes.txt", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, len(lines))]
+          self.title = lines[randrange(1, len(lines))]
 
       elif name_type == "influential": #Commoner subfixes
         with open("./Resources/common_title_subfixes", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, len(lines))]
+          self.title = lines[randrange(1, len(lines))]
  
     elif place == "prefix":            #Grab prefixes
       if name_type == "nobility":      #Noble Prefixes
         with open("./Resources/noble_title_prefixes", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, len(lines))]
+          self.title = lines[randrange(1, len(lines))]
 
       elif name_type == "influential": #Commoner prefixes
         with open("./Resources/common_title_prefixes", "r") as opened_file:
           lines = opened_file.readline()
-          self.title = lines[randint(1, len(lines))]
+          self.title = lines[randrange(1, len(lines))]
 #Grabs titles for people as prefixes/subfixes
 
 
@@ -242,9 +248,9 @@ def get_name(name_type, gender):
   if name_type == "kingdom":
     with open("./Resources/kingdom_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(1, len(lines))]
+      chosen_line = lines[randrange(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(1, len(lines))]
+        chosen_line = lines[randrange(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -252,9 +258,9 @@ def get_name(name_type, gender):
   elif name_type == "location":
     with open("./Resources/location_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(1, len(lines))]
+      chosen_line = lines[randrange(0, len(lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randint(1, len(lines))]
+        chosen_line = lines[randrange(0, len(lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -262,17 +268,16 @@ def get_name(name_type, gender):
   elif name_type == "last":
     with open("./Resources/last_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randint(1, len(lines))]
+      chosen_line = lines[randrange(0, len(lines))]
       return chosen_line
-
 
   if name_type == "first":
     if gender == "male":
       with open("./Resources/male_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
-        chosen_line = lines[randint(1, len(lines))]
+        chosen_line = lines[randrange(0, len(lines))]
         while dupe_check(namelist, chosen_line):
-          chosen_line = lines[randint(1, len(lines))]
+          chosen_line = lines[randrange(0, len(lines))]
         else:
           return chosen_line
           namelist.append(chosen_line)
@@ -280,18 +285,29 @@ def get_name(name_type, gender):
     elif gender == "female":
       with open("./Resources/female_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
-        chosen_line = lines[randint(1, len(lines))]
+        chosen_line = lines[randrange(0, len(lines))]
         while dupe_check(namelist, chosen_line):
-          chosen_line = lines[randint(1, len(lines))]
+          chosen_line = lines[randrange(0, len(lines))]
         else:
           return chosen_line
           namelist.append(chosen_line)
 #Use this for random names at creation of place or person.
 
 
+Test_Kingdom = Kingdom("Kingdom")
+Test_Kingdom.populate_kingdom(5, 5, 5, 5, 5, 5)
+Test_Kingdom.create_locations(10)
+for place in Test_Kingdom.locations:
+  place.get_full_name()
+  place.get_population()
+  place.get_local_people(3, 3)
 
-#Kingdoms and locations can be destroyed or deserted if enough people dead
-
+print(Test_Kingdom.king.name)
+print(Test_Kingdom.queen.name)
+for i in Test_Kingdom.locations:
+  print(i.name)
+for i in Test_Kingdom.people["lords"]:
+  print(i.name, i.last_name)
 
 
 
