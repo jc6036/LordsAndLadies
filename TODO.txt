@@ -1,20 +1,17 @@
 Finished Features:
+Locations have a population.
+Can generate a kingdom with locations, people, and a population.
 
 ---------------------------
 CURRENT GOALS:
----Get populations in (Total populatation for kingdom needs done still)
----Allow stuff to be destroyed if it's pop gets low enough
---Start genning and get managing lists of objects for each kingdom
---After that, single-kingdom drama
---After that, multi-kingdom drama
+-Get all of the text files in order, ditch the placeholder ones
+--Get some practice gens going, then get some basic drama going.
 ---------------------------
 
 Partially Done:
 
 Random Names for everybody (still needs real text file)
-
 Random titles (Need the real text file)
--Need to get textfile up and running for this
 Locations (need actual text files now)
 
 ---------------------------
