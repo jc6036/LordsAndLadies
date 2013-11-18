@@ -3,6 +3,8 @@ Finished Features:
 ---------------------------
 CURRENT GOALS:
 --After simple names are finished, flesh out locations
+---Get populations in (Total populatation for kingdom needs done still)
+--Start genning and get managing lists of objects for each kingdom
 --After that, single-kingdom drama
 --After that, multi-kingdom drama
 ---------------------------
