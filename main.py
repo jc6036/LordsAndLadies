@@ -294,22 +294,6 @@ def get_name(name_type, gender):
 #Use this for random names at creation of place or person.
 
 
-Test_Kingdom = Kingdom("Kingdom")
-Test_Kingdom.populate_kingdom(5, 5, 5, 5, 5, 5)
-Test_Kingdom.create_locations(10)
-for place in Test_Kingdom.locations:
-  place.get_full_name()
-  place.get_population()
-  place.get_local_people(3, 3)
-
-print(Test_Kingdom.king.name)
-print(Test_Kingdom.queen.name)
-for i in Test_Kingdom.locations:
-  print(i.name)
-for i in Test_Kingdom.people["lords"]:
-  print(i.name, i.last_name)
-
-
 
 
 
