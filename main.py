@@ -34,30 +34,34 @@ class Kingdom(object):
   def populate_noble_children(self, number_of, gender):
     if gender == "male":
       self.princes = [
-                    Nobility(get_name("first", "male"), self.king.last_name,
-                    "prince") for i in range(0, number_of)
-  ]
+                    Nobility(get_name("first", "male"),
+                    self.king.last_name, "prince")
+                    for i in range(0, number_of)
+                     ]
 
     elif gender == "female":
       self.princesses = [
-                    Nobility(get_name("first", "female"), self.king.last_name,
-                    "princess") for i in range(0, number_of)
-  ]
+                    Nobility(get_name("first", "female"),
+                    self.king.last_name,"princess")
+                    for i in range(0, number_of)
+                        ]
 #Add prince and princess objects to kingdom.  
 
 
   def populate_landlords(self, number_of, gender):
     if gender == "male":
       self.lords = [
-                    Nobility(get_name("first", "male"), get_name("last", "none"),
-                    "lord") for i in range(0, number_of)
-  ]
+                    Nobility(get_name("first", "male"),
+                    get_name("last", "none"), "lord")
+                    for i in range(0, number_of)
+                   ]
 
     elif gender == "female":
       self.ladies = [
-                    Nobility(get_name("first", "female"), get_name("last", "none"),
-                    "lady") for i in range(0, number_of)
-  ]
+                    Nobility(get_name("first", "female"),
+                    get_name("last", "none"), "lady")
+                    for i in range(0, number_of)
+                    ]
 #Add lords and lady objects to the kingdom.  
 
 
@@ -66,25 +70,28 @@ class Kingdom(object):
     if gender == "male":
       self.important_males = [
                     Commoner(get_name("first", "male"),
-                    get_name("last", "none"), jobs[randrange(0, 4)])
+                    get_name("last", "none"),
+                    jobs[randrange(0, 4)])
                     for i in range(1, number_of)
-  ]
+                             ]
 
     elif gender == "female":
       self.important_females = [
                     Commoner(get_name("first", "female"),
-                    get_name("last", "none"), jobs[randrange(0, 4)])
+                    get_name("last", "none"),
+                    jobs[randrange(0, 4)])
                     for i in range(1, number_of)
-  ]
+                               ]
 #Add influential people objects to the kingdom 
  
 
   def create_locations(self, number_of):
     variations = ["town", "village", "city", "castle"]
     self.locations = [
-                    Location(get_name("location", "none"), variations[randrange(0, 3)])
+                    Location(get_name("location", "none"),
+                    variations[randrange(0, 3)])
                     for i in range(0, number_of)
-  ]
+                     ]
 #Add location objects to the kingdom.
 
 
