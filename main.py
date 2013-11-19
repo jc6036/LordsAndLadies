@@ -13,7 +13,7 @@ class Kingdom(object):
 
   def __init__(self, name):
     self.name = name
-    self.full_name = "The Kingdom of " + name
+    self.full_name = "The Kingdom of {0}".format(name)
 
 
   people = {  #Container for the various named people
@@ -141,7 +141,7 @@ class Location(Kingdom):
   def __init__(self, name, variation):
     self.name = name
     self.variation = variation
-    self.full_name = "The " + variation + " of " + name
+    self.full_name = "The {0} of {1}".format(variation, name)
 
 
   alive = True
@@ -171,13 +171,13 @@ class Location(Kingdom):
 
   def get_full_name(self):
     if self.variation == "village":
-      self.full_name = "The Village of %s" % self.name
+      self.full_name = "The Village of {0}".format(self.name)
     elif self.variation == "town":
-      self.full_name = "The Town of %s" % self.name
+      self.full_name = "The Town of {0}".format(self.name)
     elif self.variation == "city":
-      self.full_name = "The City of %s" % self.name
+      self.full_name = "The City of {0}".format(self.name)
     elif self.variation == "castle":
-      self.full_name = "The Castle of %s" % self.name
+      self.full_name = "The Castle of {0}".format(self.name)
 
 
   def get_local_people(self, num_of_male, num_of_female):
@@ -206,9 +206,13 @@ class Person(object):
   def get_title(self):
     with open("./Resources/title_subfixes.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randrange(0, len(lines))]
+      for i in lines:
+        new = i.rstrip("\n")
+        nu_lines = []
+        nu_lines.append(new)
+      chosen_line = nu_lines[randrange(0, len(nu_lines))]
       self.title = chosen_line
-      self.full_name = self.full_name + " " + self.title
+      self.full_name = "{0} {1}".format(self.full_name, self.title)
 #Grabs titles for people as subfixes
 
 
@@ -219,7 +223,7 @@ class Nobility(Person):
     self.name = name
     self.job = job              
     self.last_name = last_name
-    self.full_name = job + " " + name + " " + last_name
+    self.full_name = "{0} {1} {2}".format(job, name, last_name)
 
 
 
@@ -230,7 +234,7 @@ class Commoner(Person):
     self.name = name
     self.job = job
     self.last_name = last_name
-    self.full_name = name + " " + last_name + " the " + job
+    self.full_name = "{0} {1} the {2}".format(name, last_name, job)
 
 
 namelist = []  #Used names are added to this
@@ -251,9 +255,13 @@ def get_name(name_type, gender):
   if name_type == "kingdom":
     with open("./Resources/kingdom_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randrange(0, len(lines))]
+      for i in lines:
+        new = i.rstrip("\n")
+        nu_lines = []
+        nu_lines.append(new)
+      chosen_line = nu_lines[randrange(0, len(nu_lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randrange(0, len(lines))]
+        chosen_line = nu_lines[randrange(0, len(nu_lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -261,9 +269,13 @@ def get_name(name_type, gender):
   elif name_type == "location":
     with open("./Resources/location_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randrange(0, len(lines))]
+      for i in lines:
+        new = i.rstrip("\n")
+        nu_lines = []
+        nu_lines.append(new)
+      chosen_line = nu_lines[randrange(0, len(nu_lines))]
       while dupe_check(namelist, chosen_line):
-        chosen_line = lines[randrange(0, len(lines))]
+        chosen_line = nu_lines[randrange(0, len(nu_lines))]
       else:
         return chosen_line
         namelist.append(chosen_line)
@@ -271,16 +283,24 @@ def get_name(name_type, gender):
   elif name_type == "last":
     with open("./Resources/last_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
-      chosen_line = lines[randrange(0, len(lines))]
+      for i in lines:
+        new = i.rstrip("\n")
+        nu_lines = []
+        nu_lines.append(new)
+      chosen_line = nu_lines[randrange(0, len(nu_lines))]
       return chosen_line
 
   if name_type == "first":
     if gender == "male":
       with open("./Resources/male_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
-        chosen_line = lines[randrange(0, len(lines))]
+        for i in lines:
+          new = i.rstrip("\n")
+          nu_lines = []
+          nu_lines.append(new)
+        chosen_line = nu_lines[randrange(0, len(nu_lines))]
         while dupe_check(namelist, chosen_line):
-          chosen_line = lines[randrange(0, len(lines))]
+          chosen_line = nu_lines[randrange(0, len(nu_lines))]
         else:
           return chosen_line
           namelist.append(chosen_line)
@@ -288,9 +308,13 @@ def get_name(name_type, gender):
     elif gender == "female":
       with open("./Resources/female_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
-        chosen_line = lines[randrange(0, len(lines))]
+        for i in lines:
+          new = i.rstrip("\n")
+          nu_lines = []
+          nu_lines.append(new)
+        chosen_line = nu_lines[randrange(0, len(nu_lines))]
         while dupe_check(namelist, chosen_line):
-          chosen_line = lines[randrange(0, len(lines))]
+          chosen_line = nu_lines[randrange(0, len(nu_lines))]
         else:
           return chosen_line
           namelist.append(chosen_line)
