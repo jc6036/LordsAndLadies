@@ -41,7 +41,7 @@ Decide on a final design for the GUI.
 Decide on the output, whether it be text file or in-window/console.
 Generate number-of-actions-per-year algorithm.
 
-Basic User Input: Number of kingdoms, Number of years of drama to generate.
+Basic User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.
 -Possible expansion on user definitions after everything is done.
 -More customization for the kingdoms/drama, or insertions of specific names by user.
 

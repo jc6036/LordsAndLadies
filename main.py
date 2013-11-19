@@ -15,9 +15,9 @@ class Kingdom(object):
     self.name = name
 
 
-  people = {
-            "male_children": [],
-            "female_children": [],
+  people = {  #Container for the various named people
+            "princes": [],
+            "princesses": [],
             "lords": [],
             "ladies": [],
             "important_males": [],
@@ -98,8 +98,8 @@ class Kingdom(object):
     self.populate_landlords(args[3], "female")
     self.populate_important_person(args[4], "male")
     self.populate_important_person(args[5], "female")
-    self.people["male_children"] = self.princes
-    self.people["female_children"] = self.princesses
+    self.people["princes"] = self.princes
+    self.people["princesses"] = self.princesses
     self.people["lords"] = self.lords
     self.people["ladies"] = self.ladies
     self.people["important_males"] = self.important_males
@@ -130,7 +130,7 @@ class Location(Kingdom):
 
   alive = True
 
-  people = {
+  people = {  #Container for location-specific named people.
             "landlord": [],
             "important_males": [],
             "important_females":[],
