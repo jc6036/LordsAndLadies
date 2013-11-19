@@ -27,8 +27,14 @@ class Kingdom(object):
 
 
   def populate_king_queen(self):
-    self.king = Nobility(get_name("first", "male"), get_name("last", "none"), "king")
-    self.queen = Nobility(get_name("first", "female"), get_name("last", "none"), "queen")
+    self.king = Nobility(
+                         get_name("first", "male"),
+                         get_name("last", "none"), "king"
+                        )
+    self.queen = Nobility(
+                          get_name("first", "female"),
+                          get_name("last", "none"), "queen"
+                         )
 #Add king and queen objects to kingdom. Only one each per kingdom.
   
 
@@ -206,9 +212,9 @@ class Person(object):
   def get_title(self):
     with open("./Resources/title_subfixes.txt", "r") as opened_file:
       lines = opened_file.readlines()
+      nu_lines = []
       for i in lines:
         new = i.rstrip("\n")
-        nu_lines = []
         nu_lines.append(new)
       chosen_line = nu_lines[randrange(0, len(nu_lines))]
       self.title = chosen_line
@@ -255,9 +261,9 @@ def get_name(name_type, gender):
   if name_type == "kingdom":
     with open("./Resources/kingdom_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
+      nu_lines = []
       for i in lines:
         new = i.rstrip("\n")
-        nu_lines = []
         nu_lines.append(new)
       chosen_line = nu_lines[randrange(0, len(nu_lines))]
       while dupe_check(namelist, chosen_line):
@@ -269,9 +275,9 @@ def get_name(name_type, gender):
   elif name_type == "location":
     with open("./Resources/location_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
+      nu_lines = []
       for i in lines:
         new = i.rstrip("\n")
-        nu_lines = []
         nu_lines.append(new)
       chosen_line = nu_lines[randrange(0, len(nu_lines))]
       while dupe_check(namelist, chosen_line):
@@ -283,9 +289,9 @@ def get_name(name_type, gender):
   elif name_type == "last":
     with open("./Resources/last_names.txt", "r") as opened_file:
       lines = opened_file.readlines()
+      nu_lines = []
       for i in lines:
         new = i.rstrip("\n")
-        nu_lines = []
         nu_lines.append(new)
       chosen_line = nu_lines[randrange(0, len(nu_lines))]
       return chosen_line
@@ -294,9 +300,9 @@ def get_name(name_type, gender):
     if gender == "male":
       with open("./Resources/male_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
+        nu_lines = []
         for i in lines:
           new = i.rstrip("\n")
-          nu_lines = []
           nu_lines.append(new)
         chosen_line = nu_lines[randrange(0, len(nu_lines))]
         while dupe_check(namelist, chosen_line):
@@ -308,9 +314,9 @@ def get_name(name_type, gender):
     elif gender == "female":
       with open("./Resources/female_names.txt", "r") as opened_file:
         lines = opened_file.readlines()
+        nu_lines = []
         for i in lines:
           new = i.rstrip("\n")
-          nu_lines = []
           nu_lines.append(new)
         chosen_line = nu_lines[randrange(0, len(nu_lines))]
         while dupe_check(namelist, chosen_line):
@@ -328,9 +334,13 @@ Test_Kingdom.get_total_population(Test_Kingdom.locations)
 Test_Kingdom.king.get_title()
 
 print(Test_Kingdom.king.full_name)
+print(Test_Kingdom.queen.full_name)
+for i in Test_Kingdom.people["princes"]:
+  print(i.full_name)
+for i in Test_Kingdom.people["princesses"]:
+  print(i.full_name)
 
 #print(Test_Kingdom.population)
-#Bugs: Titles don't display properly. Or at all.
 
 
 
