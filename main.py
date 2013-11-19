@@ -13,6 +13,7 @@ class Kingdom(object):
 
   def __init__(self, name):
     self.name = name
+    self.full_name = "The Kingdom of " + name
 
 
   people = {  #Container for the various named people
@@ -71,16 +72,16 @@ class Kingdom(object):
       self.important_males = [
                     Commoner(get_name("first", "male"),
                     get_name("last", "none"),
-                    jobs[randrange(0, 4)])
-                    for i in range(1, number_of)
+                    jobs[randrange(0, 5)])
+                    for i in range(0, number_of)
                              ]
 
     elif gender == "female":
       self.important_females = [
                     Commoner(get_name("first", "female"),
                     get_name("last", "none"),
-                    jobs[randrange(0, 4)])
-                    for i in range(1, number_of)
+                    jobs[randrange(0, 5)])
+                    for i in range(0, number_of)
                                ]
 #Add influential people objects to the kingdom 
  
@@ -89,7 +90,7 @@ class Kingdom(object):
     variations = ["town", "village", "city", "castle"]
     self.locations = [
                     Location(get_name("location", "none"),
-                    variations[randrange(0, 3)])
+                    variations[randrange(0, 4)])
                     for i in range(0, number_of)
                      ]
 #Add location objects to the kingdom.
@@ -111,6 +112,8 @@ class Kingdom(object):
     self.people["ladies"] = self.ladies
     self.people["important_males"] = self.important_males
     self.people["important_females"] = self.important_females
+    for i in self.locations:
+      i.get_local_people(randrange(1, 6), randrange(1, 6))
 
 
   def get_location_populations(self):
@@ -138,6 +141,7 @@ class Location(Kingdom):
   def __init__(self, name, variation):
     self.name = name
     self.variation = variation
+    self.full_name = "The " + variation + " of " + name
 
 
   alive = True
@@ -150,14 +154,14 @@ class Location(Kingdom):
 
 
   def get_population(self): #Determine population in a location.
-    if self.variation == "town":
-      self.population = randrange(300, 1000)
-    elif self.variation  == "village":
-      self.population = randrange(20, 300)
+    if self.variation  == "village":
+      self.population = randrange(20, 301)
+    elif self.variation == "town":
+      self.population = randrange(300, 1001)
     elif self.variation  == "city":
-      self.population = randrange(1000, 5000)
+      self.population = randrange(1000, 5001)
     elif self.variation  == "castle":
-      self.population = randrange(5000, 10000)
+      self.population = randrange(5000, 10001)
 
 
   def living_check(self):
@@ -177,7 +181,7 @@ class Location(Kingdom):
 
 
   def get_local_people(self, num_of_male, num_of_female):
-    random_gender = ["male", "female"][randrange(0, 1)]
+    random_gender = ["male", "female"][randrange(0, 2)]
     self.populate_landlords(1, random_gender)
     self.populate_important_person(num_of_male, "male")
     self.populate_important_person(num_of_female, "female")
@@ -200,9 +204,11 @@ class Person(object):
   alive = True
 
   def get_title(self):
-      with open("./Resources/title_subfixes.txt", "r") as opened_file:
-        lines = opened_file.readline()
-        self.title = lines[randrange(1, len(lines))]
+    with open("./Resources/title_subfixes.txt", "r") as opened_file:
+      lines = opened_file.readlines()
+      chosen_line = lines[randrange(0, len(lines))]
+      self.title = chosen_line
+      self.full_name = self.full_name + " " + self.title
 #Grabs titles for people as subfixes
 
 
@@ -212,7 +218,9 @@ class Nobility(Person):
   def __init__(self, name, last_name, job):
     self.name = name
     self.job = job              
-    self.last_name = last_name 
+    self.last_name = last_name
+    self.full_name = job + " " + name + " " + last_name
+
 
 
 class Commoner(Person):
@@ -221,8 +229,8 @@ class Commoner(Person):
   def __init__(self, name, last_name, job):
     self.name = name
     self.job = job
-    self.last_name = last_name 
-
+    self.last_name = last_name
+    self.full_name = name + " " + last_name + " the " + job
 
 
 namelist = []  #Used names are added to this
@@ -295,49 +303,10 @@ Test_Kingdom.get_location_populations()
 Test_Kingdom.get_total_population(Test_Kingdom.locations)
 Test_Kingdom.king.get_title()
 
-for i in Test_Kingdom.people["princes"]:
-  print(i.name)
+print(Test_Kingdom.king.full_name)
 
-for i in Test_Kingdom.people["princesses"]:
-  print(i.name)
-
-for i in Test_Kingdom.people["lords"]:
-  print(i.name)
-
-for i in Test_Kingdom.people["ladies"]:
-  print(i.name)
-
-for i in Test_Kingdom.people["important_males"]:
-  print(i.name)
-
-for i in Test_Kingdom.people["important_females"]:
-  print(i.name)
-
-for i in Test_Kingdom.locations:
-  print(i.population)
-
-print(Test_Kingdom.population)
-print(Test_Kingdom.king.name)
-print(Test_Kingdom.king.title)
-print(Test_Kingdom.queen.name)
-
-for i in Test_Kingdom.locations:
-  i.get_local_people(3, 3)
-
-for i in Test_Kingdom.locations:
-  for i in i.people["landlord"]:
-    print(i.name)
-
-for i in Test_Kingdom.locations:
-  for i in i.people["important_males"]:
-    print(i.name)
-
-for i in Test_Kingdom.locations:
-  for i in i.people["important_females"]:
-    print(i.name)
-
-#Bugs: Titles don't display properly.
-#-All of the locations have the same exact people
+#print(Test_Kingdom.population)
+#Bugs: Titles don't display properly. Or at all.
 
 
 
