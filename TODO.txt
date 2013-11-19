@@ -1,18 +1,25 @@
 Finished Features:
-Locations have a population.
+
 Can generate a kingdom with locations, people, and a population.
+Locations have a population and real names.
+-200+ Location Names
+-50+ Kingdom Names
+People have real names and can be generated.
+-300 Last Names
+-200+ Male Names
+-200+ Female Names
+Titles for people that are significant
+-25+ Subfixes for Titles
+
+
 
 ---------------------------
 CURRENT GOALS:
--Get all of the text files in order, ditch the placeholder ones
 --Get some practice gens going, then get some basic drama going.
 ---------------------------
 
 Partially Done:
 
-Random Names for everybody (still needs real text file)
-Random titles (Need the real text file)
-Locations (need actual text files now)
 
 ---------------------------
 
@@ -44,13 +51,3 @@ Generate number-of-actions-per-year algorithm.
 Basic User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.
 -Possible expansion on user definitions after everything is done.
 -More customization for the kingdoms/drama, or insertions of specific names by user.
-
-TEXT FILES NEEDED:
--500 Male European First Names
--500 Female European Last Names
--250 European Last Names
--25-50 Titles, prefixes and subfixes.
---Both Royal and Commoner titles
--200 European Settlement Names
--50 Names For Wars
--50 Names For Revolution

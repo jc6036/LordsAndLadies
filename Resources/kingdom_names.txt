@@ -1,200 +1,50 @@
-Kingdom_Name 1
-Kingdom_Name 2
-Kingdom_Name 3
-Kingdom_Name 4
-Kingdom_Name 5
-Kingdom_Name 6
-Kingdom_Name 7
-Kingdom_Name 8
-Kingdom_Name 9
-Kingdom_Name 10
-Kingdom_Name 11
-Kingdom_Name 12
-Kingdom_Name 13
-Kingdom_Name 14
-Kingdom_Name 15
-Kingdom_Name 16
-Kingdom_Name 17
-Kingdom_Name 18
-Kingdom_Name 19
-Kingdom_Name 20
-Kingdom_Name 21
-Kingdom_Name 22
-Kingdom_Name 23
-Kingdom_Name 24
-Kingdom_Name 25
-Kingdom_Name 26
-Kingdom_Name 27
-Kingdom_Name 28
-Kingdom_Name 29
-Kingdom_Name 30
-Kingdom_Name 31
-Kingdom_Name 32
-Kingdom_Name 33
-Kingdom_Name 34
-Kingdom_Name 35
-Kingdom_Name 36
-Kingdom_Name 37
-Kingdom_Name 38
-Kingdom_Name 39
-Kingdom_Name 40
-Kingdom_Name 41
-Kingdom_Name 42
-Kingdom_Name 43
-Kingdom_Name 44
-Kingdom_Name 45
-Kingdom_Name 46
-Kingdom_Name 47
-Kingdom_Name 48
-Kingdom_Name 49
-Kingdom_Name 50
-Kingdom_Name 51
-Kingdom_Name 52
-Kingdom_Name 53
-Kingdom_Name 54
-Kingdom_Name 55
-Kingdom_Name 56
-Kingdom_Name 57
-Kingdom_Name 58
-Kingdom_Name 59
-Kingdom_Name 60
-Kingdom_Name 61
-Kingdom_Name 62
-Kingdom_Name 63
-Kingdom_Name 64
-Kingdom_Name 65
-Kingdom_Name 66
-Kingdom_Name 67
-Kingdom_Name 68
-Kingdom_Name 69
-Kingdom_Name 70
-Kingdom_Name 71
-Kingdom_Name 72
-Kingdom_Name 73
-Kingdom_Name 74
-Kingdom_Name 75
-Kingdom_Name 76
-Kingdom_Name 77
-Kingdom_Name 78
-Kingdom_Name 79
-Kingdom_Name 80
-Kingdom_Name 81
-Kingdom_Name 82
-Kingdom_Name 83
-Kingdom_Name 84
-Kingdom_Name 85
-Kingdom_Name 86
-Kingdom_Name 87
-Kingdom_Name 88
-Kingdom_Name 89
-Kingdom_Name 90
-Kingdom_Name 91
-Kingdom_Name 92
-Kingdom_Name 93
-Kingdom_Name 94
-Kingdom_Name 95
-Kingdom_Name 96
-Kingdom_Name 97
-Kingdom_Name 98
-Kingdom_Name 99
-Kingdom_Name 100
-Kingdom_Name 101
-Kingdom_Name 102
-Kingdom_Name 103
-Kingdom_Name 104
-Kingdom_Name 105
-Kingdom_Name 106
-Kingdom_Name 107
-Kingdom_Name 108
-Kingdom_Name 109
-Kingdom_Name 110
-Kingdom_Name 111
-Kingdom_Name 112
-Kingdom_Name 113
-Kingdom_Name 114
-Kingdom_Name 115
-Kingdom_Name 116
-Kingdom_Name 117
-Kingdom_Name 118
-Kingdom_Name 119
-Kingdom_Name 120
-Kingdom_Name 121
-Kingdom_Name 122
-Kingdom_Name 123
-Kingdom_Name 124
-Kingdom_Name 125
-Kingdom_Name 126
-Kingdom_Name 127
-Kingdom_Name 128
-Kingdom_Name 129
-Kingdom_Name 130
-Kingdom_Name 131
-Kingdom_Name 132
-Kingdom_Name 133
-Kingdom_Name 134
-Kingdom_Name 135
-Kingdom_Name 136
-Kingdom_Name 137
-Kingdom_Name 138
-Kingdom_Name 139
-Kingdom_Name 140
-Kingdom_Name 141
-Kingdom_Name 142
-Kingdom_Name 143
-Kingdom_Name 144
-Kingdom_Name 145
-Kingdom_Name 146
-Kingdom_Name 147
-Kingdom_Name 148
-Kingdom_Name 149
-Kingdom_Name 150
-Kingdom_Name 151
-Kingdom_Name 152
-Kingdom_Name 153
-Kingdom_Name 154
-Kingdom_Name 155
-Kingdom_Name 156
-Kingdom_Name 157
-Kingdom_Name 158
-Kingdom_Name 159
-Kingdom_Name 160
-Kingdom_Name 161
-Kingdom_Name 162
-Kingdom_Name 163
-Kingdom_Name 164
-Kingdom_Name 165
-Kingdom_Name 166
-Kingdom_Name 167
-Kingdom_Name 168
-Kingdom_Name 169
-Kingdom_Name 170
-Kingdom_Name 171
-Kingdom_Name 172
-Kingdom_Name 173
-Kingdom_Name 174
-Kingdom_Name 175
-Kingdom_Name 176
-Kingdom_Name 177
-Kingdom_Name 178
-Kingdom_Name 179
-Kingdom_Name 180
-Kingdom_Name 181
-Kingdom_Name 182
-Kingdom_Name 183
-Kingdom_Name 184
-Kingdom_Name 185
-Kingdom_Name 186
-Kingdom_Name 187
-Kingdom_Name 188
-Kingdom_Name 189
-Kingdom_Name 190
-Kingdom_Name 191
-Kingdom_Name 192
-Kingdom_Name 193
-Kingdom_Name 194
-Kingdom_Name 195
-Kingdom_Name 196
-Kingdom_Name 197
-Kingdom_Name 198
-Kingdom_Name 199
-Kingdom_Name 200
+Kerma
+Carthage
+Kush
+Nok
+D'mt
+Numidia
+Ptolemaic
+Aksum
+Makuria
+Idrisid
+Nekor
+Ghana
+Sine
+Nri
+Ayyubid
+Mali
+Marinid
+Mamluk
+Kanem
+Bornu
+Kongo
+Kaffa
+Ajuuraan
+Benin
+Adal
+Wattasid
+Mutapa
+Fez
+Loango
+Kasanze
+Koya
+Denanke
+Baguirmi
+Matamba
+Dendi
+Quaddai
+Alaoutie
+Geledi
+Zulu
+Yeke
+Kuba
+Igala
+Ashanti
+Denanke
+Cayo
+Saadi
+Kanem
+Makuria
+Songhai
+Jolof
