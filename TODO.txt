@@ -15,11 +15,11 @@ Titles for people that are significant
 
 ---------------------------
 CURRENT GOALS:
---Get some practice gens going, then get some basic drama going.
+--Get user input in for various numbers. Output kingdom contents to a text file.
+--Optimize current code a bit?
 ---------------------------
 
 Partially Done:
-
 
 ---------------------------
 
