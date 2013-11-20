@@ -10,18 +10,18 @@ People have real names and can be generated.
 -200+ Female Names
 Titles for people that are significant
 -25+ Subfixes for Titles
+All-in-one function for generating a kingdom.
+Ability to output contents of a kingdom to a text file.
 
 
 
 ---------------------------
 CURRENT GOALS:
---Get user input in for various numbers. Output kingdom contents to a text file.
 --Optimize current code a bit?
 ---Add more comments where necessary.
 ---------------------------
 
 Partially Done:
-User input and kingdom output. Debugging is going on now, and the functions are written.
 Minor optimizations done. Reducing LOC is going to be a priority before moving on to drama.
 
 
