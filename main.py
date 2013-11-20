@@ -15,15 +15,14 @@ class Kingdom(object):
     self.name = name
     self.full_name = "The Kingdom of {0}".format(name)
 
-
-  people = {  #Container for the various named people
-            "princes": [],
-            "princesses": [],
-            "lords": [],
-            "ladies": [],
-            "important_males": [],
-            "important_females": [],
-  }
+    self.people = {  #Container for the various named people
+                "princes": [],
+                "princesses": [],
+                "lords": [],
+                "ladies": [],
+                "important_males": [],
+                "important_females": [],
+    }
 
 
   def populate_king_queen(self):
@@ -153,14 +152,13 @@ class Location(Kingdom):
     self.variation = variation
     self.full_name = "The {0} of {1}".format(variation, name)
 
+    self.people = {  #Container for location-specific named people.
+                  "landlord": [],
+                  "important_males": [],
+                  "important_females":[],
+    }
 
-  alive = True
-
-  people = {  #Container for location-specific named people.
-            "landlord": [],
-            "important_males": [],
-            "important_females":[],
-  }
+    self.alive = True
 
 
   def get_population(self): #Determine population in a location.
@@ -239,8 +237,10 @@ class Commoner(Person):
     self.full_name = "{0} {1} the {2}".format(name, last_name, job)
 
 
+
 namelist = []  #Used names are added to this
 
+kingdoms = []  #Used to contain kingdom objects
 
 def dupe_check(namelist, name):
 
@@ -269,7 +269,7 @@ def get_name(name_type, gender):
       else:
         return chosen_line
         namelist.append(chosen_line)
-        if len(namelist) >= 200:
+        if len(namelist) >= 200:  #Resets namelist if more than 200 names within
           namelist.remove(namelist[:])
 
   elif name_type == "location":
@@ -333,67 +333,70 @@ def get_name(name_type, gender):
 #Use this for random names at creation of place or person.
 
 
-def kingdom_gen(varname):
+def kingdom_gen():
 #Designed to run and allow user to determine some variables.
-#Varname will be the object name of the kingdom generated.
+#index_num is the slice in 'kingdoms' this kingdom is located on.
   name_check = input("Please enter the name of the kingdom. 'random' will gen a random name.")
 
   if name_check == "random":
-    varname = Kingdom(get_name("kingdom", "none"))
+    Genned_Kingdom = Kingdom(get_name("kingdom", "none"))
   else:
-    varname = Kingdom(name_check)
+    Genned_Kingdom = Kingdom(name_check)
+
+  kingdoms.append(Genned_Kingdom)
 
   size = input("Please choose a size: xs, s, m, l, xl.")
+
   if size == "xs":
-    varname.create_locations(randrange(1, 6))
-    varname.populate_kingdom(randrange(1, 4),
+    Genned_Kingdom.create_locations(randrange(1, 6))
+    Genned_Kingdom.populate_kingdom(randrange(1, 4),
                              randrange(1, 4),
                              randrange(5, 11),
                              randrange(5, 11),
                              randrange(10, 16),
                              randrange(10, 16))
-    varname.get_location_populations()
-    varname.get_total_population(varname.locations)
+    Genned_Kingdom.get_location_populations()
+    Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
   elif size == "s":
-    varname.create_locations(randrange(5, 11))
-    varname.populate_kingdom(randrange(2, 7),
+    Genned_Kingdom.create_locations(randrange(5, 11))
+    Genned_Kingdom.populate_kingdom(randrange(2, 7),
                              randrange(2, 7),
                              randrange(10, 16),
                              randrange(10, 16),
                              randrange(15, 21),
                              randrange(15, 21))
-    varname.get_location_populations()
-    varname.get_total_populations(varname.locations)
+    Genned_Kingdom.get_location_populations()
+    Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
   elif size == "m":
-    varname.create_locations(randrange(10, 16))
-    varname.populate_kingdom(randrange(2, 10),
+    Genned_Kingdom.create_locations(randrange(10, 16))
+    Genned_Kingdom.populate_kingdom(randrange(2, 10),
                              randrange(2, 10),
                              randrange(15, 21),
                              randrange(15, 21),
                              randrange(20, 26),
                              randrange(20, 26))
-    varname.get_location_populations()
-    varname.get_total_populations(varname.locations)
+    Genned_Kingdom.get_location_populations()
+    Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
   elif size == "l":
-    varname.create_locations(randrange(15, 21))
-    varname.populate_kingdom(randrange(2, 16),
+    Genned_Kingdom.create_locations(randrange(15, 21))
+    Genned_Kingdom.populate_kingdom(randrange(2, 16),
                              randrange(2, 16),
                              randrange(20, 26),
                              randrange(20, 26),
                              randrange(25, 31),
                              randrange(25, 31))
-    varname.get_location_populations()
-    varname.get_total_populations(varname.locations)
+    Genned_Kingdom.get_location_populations()
+    Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
   elif size == "xl":
-    varname.create_locations(randrange(20, 26))
-    varname.populate_kingdom(randrange(2, 21),
+    Genned_Kingdom.create_locations(randrange(20, 26))
+    Genned_Kingdom.populate_kingdom(randrange(2, 21),
                              randrange(2, 21),
                              randrange(25, 31),
                              randrange(25, 31),
                              randrange(30, 36),
                              randrange(30, 36))
-    varname.get_location_populations()
-    varname.get_total_populations(varname.locations)
+    Genned_Kingdom.get_location_populations()
+    Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
   else:
     print("Text is not detected as a size.")
 
@@ -401,50 +404,56 @@ def kingdom_gen(varname):
 def output_kingdom_content(kingdom, filename):
 #kingdom is object name being described in the text file.
 #Filename is exactly what it says on the tin.
-  with open("./Output/{0}", "w").format(filename) as opened_file:
-    opened_file.write("{0}\nPopulation: {1}").format(kingdom.full_name, kingdom.population)
+  with open("./Output/{0}".format(filename), "w") as opened_file:
+    opened_file.write("{0}\nPopulation: {1}\n".format(kingdom.full_name, kingdom.population))
 
-    kingdom.king.full_name = king_name
-    kingdom.queen.full_name = queen_name
-    opened_file.write("Your King is {0}. Your Queen is {1}\n").format(king_name, queen_name)
+    king_name = kingdom.king.full_name
+    queen_name = kingdom.queen.full_name
+    opened_file.write("Your King is {0}. Your Queen is {1}.\n".format(king_name, queen_name))
+    opened_file.write("\n")
 
-    kingdom.people["princes"] = princes
-    kingdom.people["princesses"] = princesses
-    opened_file.write("The {0}'s noble children are as follows.\n").format(kingdom.full_name)
+    princes = kingdom.people["princes"]
+    princesses = kingdom.people["princesses"]
+    opened_file.write("The {0}'s noble children are as follows:\n".format(kingdom.full_name))
     for i in princes:
-      opened_file.write(i.full_name)
+      opened_file.write("{0}\n".format(i.full_name))
     for i in princesses:
-      opened_file.write(i.full_name)
+      opened_file.write("{0}\n".format(i.full_name))
+    opened_file.write("\n")    
 
-    kingdom.people["lords"] = lords
-    kingdom.people["ladies"] = ladies
-    opened_file.write("\nThe {0}'s lords and ladies are as follows.\n").format(kingdom.full_name)
+    lords = kingdom.people["lords"]
+    ladies = kingdom.people["ladies"]
+    opened_file.write("\nThe {0}'s lords and ladies are as follows:\n".format(kingdom.full_name))
     for i in lords:
-      opened_file.write(i.full_name)
+      opened_file.write("{0}\n".format(i.full_name))
     for i in ladies:
-      opened_file.write(i.full_name)
+      opened_file.write("{0}\n".format(i.full_name))
+    opened_file.write("\n")
 
-    kingdom.people["important_males"] = males
-    kingdom.people["important_females"] = females
-    opened_file.write("The {0}'s notable commoners are as follows.\n").format(kingdom.full_name)
+    males = kingdom.people["important_males"]
+    females = kingdom.people["important_females"]
+    opened_file.write("The {0}'s notable commoners are as follows:\n".format(kingdom.full_name))
     for i in males:
-      opened_file.write(i.full_name)
+      opened_file.write("{0}\n".format(i.full_name))
     for i in females:
-      opened_file.write(i.full_name)
+      opened_file.write("{0}\n".format(i.full_name))
+    opened_file.write("\n")
 
-    opened_file.write("The {0}'s locations are as follows.\n").format(kingdom.full_name)
+
+    opened_file.write("The {0}'s locations are as follows:\n".format(kingdom.full_name))
     for i in kingdom.locations:
-      opened_file.write("{0}, with a population of {1}.").format(i.full_name, i.population)
-      opened_file.write("Landlord:{0}").format(i.people["landlord"][0])
-      opened_file.write("Notable males and females are as follows.\n")
+      opened_file.write("{0}, with a population of {1}.\n".format(i.full_name, i.population))
+      opened_file.write("Landlord: {0}\n".format(i.people["landlord"][0].full_name))
+      opened_file.write("Notable males and females:\n")
       for people in i.people["important_males"]:
-        opened_file.write(people.full_name)
+        opened_file.write("{0}\n".format(people.full_name))
       for people in i.people["important_females"]:
-        opened_file.write(people.full_name)
+        opened_file.write("{0}\n".format(people.full_name))
 
       opened_file.write("\n")
 
-
+kingdom_gen()
+output_kingdom_content(kingdoms[0], "test_output")
 
 
 
