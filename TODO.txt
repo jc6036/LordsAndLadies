@@ -19,6 +19,7 @@ Ability to output contents of a kingdom to a text file.
 CURRENT GOALS:
 --Optimize current code a bit?
 ---Add more comments where necessary.
+-Add more job titles for commoners!
 ---------------------------
 
 Partially Done:
