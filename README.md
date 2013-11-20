@@ -1,19 +1,18 @@
 LordsAndLadies
 ==============
+Random kingdom and kingdom drama generator.
+----------
 
-Lords and Ladies is written in Python 3.2, and uses the random, tkinter, and ttk modules.
-They are all required for the program to work.
+Lords and ladies is written in python 3.2 for Linux, and uses the 'random' module.
 
 ----------
 
 Due to early stages, current version number available in main.py.
 
-Random kingdom and kingdom drama generator.
-
 TODO has a feature list, both planned and implemented.
 
 ----------
 
-Currently, the program is not in a workable state, and is missing several key components. After I get the resources
-of all of the needed text files sorted out I'll make a basic working model of the program. For now I have placeholder
-classes and functions, ready to go when the text files are in.
+Currently, only the kingdom generation aspect of the program is complete. The drama has yet to come.
+
+There is a demo text file of what current generation is like in the Output folder. 
