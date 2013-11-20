@@ -17,9 +17,13 @@ Titles for people that are significant
 CURRENT GOALS:
 --Get user input in for various numbers. Output kingdom contents to a text file.
 --Optimize current code a bit?
+---Add more comments where necessary.
 ---------------------------
 
 Partially Done:
+User input and kingdom output. Debugging is going on now, and the functions are written.
+Minor optimizations done. Reducing LOC is going to be a priority before moving on to drama.
+
 
 ---------------------------
 

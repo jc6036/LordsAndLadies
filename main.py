@@ -445,9 +445,6 @@ def output_kingdom_content(kingdom, filename):
       opened_file.write("\n")
 
 
-kingdom_gen(Test_Kingdom)
-
-
 
 
 
