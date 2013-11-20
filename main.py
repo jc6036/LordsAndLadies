@@ -336,7 +336,7 @@ def get_name(name_type, gender):
 def kingdom_gen():
 #Designed to run and allow user to determine some variables.
 #index_num is the slice in 'kingdoms' this kingdom is located on.
-  name_check = input("Please enter the name of the kingdom. 'random' will gen a random name.")
+  name_check = input("Please enter the name of the kingdom. 'random' will gen a random name.\n")
 
   if name_check == "random":
     Genned_Kingdom = Kingdom(get_name("kingdom", "none"))
@@ -345,9 +345,9 @@ def kingdom_gen():
 
   kingdoms.append(Genned_Kingdom)
 
-  size = input("Please choose a size: xs, s, m, l, xl.")
+  size = input("Please choose a size: XS, S, M, L, XL.\n").lower()
 
-  if size == "xs":
+  if size == "xs":  #Extra Small
     Genned_Kingdom.create_locations(randrange(1, 6))
     Genned_Kingdom.populate_kingdom(randrange(1, 4),
                              randrange(1, 4),
@@ -357,7 +357,7 @@ def kingdom_gen():
                              randrange(10, 16))
     Genned_Kingdom.get_location_populations()
     Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
-  elif size == "s":
+  elif size == "s":  #Small
     Genned_Kingdom.create_locations(randrange(5, 11))
     Genned_Kingdom.populate_kingdom(randrange(2, 7),
                              randrange(2, 7),
@@ -367,7 +367,7 @@ def kingdom_gen():
                              randrange(15, 21))
     Genned_Kingdom.get_location_populations()
     Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
-  elif size == "m":
+  elif size == "m":  #Medium
     Genned_Kingdom.create_locations(randrange(10, 16))
     Genned_Kingdom.populate_kingdom(randrange(2, 10),
                              randrange(2, 10),
@@ -377,7 +377,7 @@ def kingdom_gen():
                              randrange(20, 26))
     Genned_Kingdom.get_location_populations()
     Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
-  elif size == "l":
+  elif size == "l":  #Large
     Genned_Kingdom.create_locations(randrange(15, 21))
     Genned_Kingdom.populate_kingdom(randrange(2, 16),
                              randrange(2, 16),
@@ -387,7 +387,7 @@ def kingdom_gen():
                              randrange(25, 31))
     Genned_Kingdom.get_location_populations()
     Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
-  elif size == "xl":
+  elif size == "xl":  #Extra Large
     Genned_Kingdom.create_locations(randrange(20, 26))
     Genned_Kingdom.populate_kingdom(randrange(2, 21),
                              randrange(2, 21),
@@ -397,8 +397,16 @@ def kingdom_gen():
                              randrange(30, 36))
     Genned_Kingdom.get_location_populations()
     Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
-  else:
-    print("Text is not detected as a size.")
+  else:  #Defaults to medium if no recognizable size entered.
+    Genned_Kingdom.create_locations(randrange(10, 16))
+    Genned_Kingdom.populate_kingdom(randrange(2, 10),
+                             randrange(2, 10),
+                             randrange(15, 21),
+                             randrange(15, 21),
+                             randrange(20, 26),
+                             randrange(20, 26))
+    Genned_Kingdom.get_location_populations()
+    Genned_Kingdom.get_total_population(Genned_Kingdom.locations)
 
 
 def output_kingdom_content(kingdom, filename):
@@ -453,7 +461,7 @@ def output_kingdom_content(kingdom, filename):
       opened_file.write("\n")
 
 kingdom_gen()
-output_kingdom_content(kingdoms[0], "test_output")
+output_kingdom_content(kingdoms[0], "Kingdom_Contents_Demo")
 
 
 
