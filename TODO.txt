@@ -12,18 +12,20 @@ Titles for people that are significant
 -25+ Subfixes for Titles
 All-in-one function for generating a kingdom.
 Ability to output contents of a kingdom to a text file.
-
-
+Natural Disasters can decimate locations, and even outright destroy them.
+If the king or queen die, a prince or princess, can take their place. 
 
 ---------------------------
 CURRENT GOALS:
---Optimize current code a bit?
----Add more comments where necessary.
--Add more job titles for commoners!
+-Get started on getting drama in, starting with single-kingdom functions.
 ---------------------------
 
 Partially Done:
-Minor optimizations done. Reducing LOC is going to be a priority before moving on to drama.
+Some drama.
+-Assassinations
+-Natural Disasters
+-Noble succession of the throne
+-Death due to illness
 
 
 ---------------------------
@@ -36,11 +38,7 @@ Random war between Kingdoms.
 Random trade between Kingdoms.
 -War and Trade will not be COMPLETELY random. IE friendly kingdoms won't have as high a chance to wage war with each other.
 Multiple Kingdoms for inter-kingdom drama.
-Natural disasters that befall each Kingdom.
 Multiple forms of drama, including but not limited to:
--Incest
--Assassinations
--Death Due To Illness
 -Death Due To Natural Disaster
 -Death Due To War
 -Declarations of War
@@ -48,9 +46,6 @@ Multiple forms of drama, including but not limited to:
 -Kingdom Pillaging
 -Adultery
 -Gossip
-Incorporate the GUI using tkinter.
-Decide on a final design for the GUI.
-Decide on the output, whether it be text file or in-window/console.
 Generate number-of-actions-per-year algorithm.
 
 Basic User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.

@@ -72,13 +72,14 @@ class Kingdom(object):
 
 
   def populate_important_person(self, number_of, gender):
-    jobs = ["Blacksmith", "Tailor", "Farmer", "Cobbler", "Baker"]
+    jobs = ["Blacksmith", "Tailor", "Farmer", "Cobbler", "Baker"
+            "Scholar", "Barkeep", "Potter", "Butcher", "Bard"]
 
     if gender == "male":
       self.important_males = [
                     Commoner(get_name("first", "male"),
                     get_name("last", "none"),
-                    jobs[randrange(0, 5)])
+                    jobs[randrange(0, 10)])
                     for i in range(0, number_of)
                              ]
 
@@ -86,7 +87,7 @@ class Kingdom(object):
       self.important_females = [
                     Commoner(get_name("first", "female"),
                     get_name("last", "none"),
-                    jobs[randrange(0, 5)])
+                    jobs[randrange(0, 10)])
                     for i in range(0, number_of)
                                ]
 #Add influential people objects to the kingdom 
@@ -141,6 +142,25 @@ class Kingdom(object):
       self.population += i.population
 #Gets the total population of the kingdom
 
+#Functions that write to file are below
+
+  def fill_position(self, filename, place_filled):
+    if place_filled == "king":
+      replacement = self.people["princes"][randrange(0, len(self.people["princes"]))]
+      self.king = replacement
+      self.people["princes"].remove(replacement)
+      opened_file = open("{0}".format(filename), "w")
+      opened_file.write("{0} succeeded his father on the throne.\n".format(replacement.full_name))  
+      opened_file.close()
+
+    elif place_filled == "queen":
+      replacement = self.people["princesses"][randrange(0, len(self.people["princesses"]))]
+      self.queen = replacement
+      self.people["princesses"].remove(replacement)
+      opened_file = open("{0}".format(filename), "w")
+      opened_file.write("{0} succeeded her mother on the throne\n".format(replacement.full_name))
+      opened_file.close()
+
 
 
 class Location(Kingdom):
@@ -184,6 +204,7 @@ class Location(Kingdom):
     self.populate_landlords(1, random_gender)
     self.populate_important_person(num_of_male, "male")
     self.populate_important_person(num_of_female, "female")
+
     if random_gender == "male":
       self.people["landlord"] = self.lords
     elif random_gender == "female":
@@ -193,6 +214,46 @@ class Location(Kingdom):
     self.people["important_females"] = self.important_females
 
 
+#Functions that write to file are below
+
+  def natural_disaster(self, filename):
+    disasters = ["a tornado", "a hurricane", "a blizzard", "a lightning storm",
+                 "flooding", "an earthquake", "a tsunami"]
+
+    with open("./Output/{0}".format(filename), "w") as opened_file:
+      self.population = self.population - randrange(50, 5000)
+      if self.population <= 0:
+        opened_file.write(
+        "{0} was destroyed by {1}\n".format(self.full_name, disasters[randrange(0, 7)]
+        ))
+        self.alive = False
+        for i in self.people:
+          for item in i:
+            item.alive = False
+      else:
+        opened_file.write(
+        "{0} was damaged by {1}, reducing the population to {2}\n".format(
+        self.full_name, disasters[randrange(0, 7)], self.population)
+        )
+
+
+  def local_fill_position(self):
+    genders = ["male", "female"]
+    gender = genders[randrange(0, 2)]
+    if gender == "male":
+      males = self.people["important_males"]
+      chosen_male = males[randrange(0, len(males))]
+      self.people["landlord"] = chosen_male
+      self.people["important_males"].remove(chosen_male)
+
+    elif gender == "female":
+      females = self.people["important_females"]
+      chosen_female = females[randrange(0, len(males))]
+      self.people["landlord"] = chosen_female
+      self.people["important_males"].remove(chosen_female)
+
+
+
 class Person(object):
   """Function holder for people."""
   
@@ -200,8 +261,8 @@ class Person(object):
     self.name = name
     self.last_name = last_name
     self.job = job
+    self.alive = True  #Changed when drastic event kills the person.
 
-  alive = True  #Changed when drastic event kills the person.
 
   def get_title(self):
     with open("./Resources/title_subfixes.txt", "r") as opened_file:
@@ -214,6 +275,21 @@ class Person(object):
       self.title = chosen_line
       self.full_name = "{0} {1}".format(self.full_name, self.title)
 #Grabs titles for people as subfixes
+
+#Functions that write to file are below
+
+  def assassinate(self, filename):
+    self.alive = False
+    with open("./Output/{0}".format(filename), "w") as opened_file:
+      opened_file.write("{0} was assassinated.\n".format(self.full_name))
+
+
+  def illness(self, filename):
+    self.alive = False
+    with open("./Output/{0}".format(filename), "w") as opened_file:
+      opened_file.write("{0} died due to illness.\n".format(self.full_name))
+
+
 
 
 class Nobility(Person):
@@ -241,6 +317,7 @@ class Commoner(Person):
 namelist = []  #Used names are added to this
 
 kingdoms = []  #Used to contain kingdom objects
+
 
 def dupe_check(namelist, name):
 
@@ -458,19 +535,14 @@ def output_kingdom_content(kingdom, filename):
       for people in i.people["important_females"]:
         opened_file.write("{0}\n".format(people.full_name))
 
-      opened_file.write("\n")
-
-kingdom_gen()
-output_kingdom_content(kingdoms[0], "Kingdom_Contents_Demo")
-
+    opened_file.write("\n")
+    opened_file.write("\n")
+    opened_file.write("----------\n")
 
 
+def output_year_of_drama():
+  pass
 
 
-
-
-
-
-
-
-
+def main_output():
+  pass
