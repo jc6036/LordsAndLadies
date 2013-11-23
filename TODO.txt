@@ -21,12 +21,15 @@ CURRENT GOALS:
 ---------------------------
 
 Partially Done:
-Some drama.
+Some drama
 -Assassinations
 -Natural Disasters
 -Noble succession of the throne
 -Death due to illness
+-Death due to being a casulty of war
+-Death due to natural disaster
 
+Note that everything still needs the over-reaching function to bring them all together and get them working.
 
 ---------------------------
 
@@ -35,15 +38,9 @@ Planned features:
 Random revolutions, usurping.
 Random war names.
 Random war between Kingdoms.
-Random trade between Kingdoms.
--War and Trade will not be COMPLETELY random. IE friendly kingdoms won't have as high a chance to wage war with each other.
-Multiple Kingdoms for inter-kingdom drama.
 Multiple forms of drama, including but not limited to:
--Death Due To Natural Disaster
--Death Due To War
 -Declarations of War
 -Trade Embargos
--Kingdom Pillaging
 -Adultery
 -Gossip
 Generate number-of-actions-per-year algorithm.
