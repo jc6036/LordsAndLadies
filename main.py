@@ -1,6 +1,6 @@
 ################################################
 #Lords and Ladies                              #
-#v0.0.b9                                       #
+#v0.0.c1                                       #
 #Authored by jc6036                            #
 #Python 3.2 with the random module             #
 ################################################
@@ -14,6 +14,7 @@ class Kingdom(object):
     def __init__(self, name):
         self.name = name
         self.full_name = "The Kingdom of {0}".format(name)
+        self.at_war = False
 
         self.people = {  #Needed for randomization.
                 "princes": [],
@@ -103,8 +104,8 @@ class Kingdom(object):
                          ]
 #Provides an infinite number of genned locations.
 
-#Note that despite usage of the word infinite, using very large numbers is not
-#recommended for the sake of speed and health of your processor.
+# Note that despite usage of the word infinite, using very large numbers is not
+# recommended for the sake of speed and health of your processor.
 
 
     def populate_kingdom(self, *args):
@@ -250,11 +251,12 @@ class Location(Kingdom):
                 for i in self.people:
                     for item in i:
                         item.alive = False
-        else:
-            opened_file.write(
+            else:
+                opened_file.write(
             "{0} was damaged by {1}, reducing the population to {2}\n".format(
             self.full_name, disasters[randrange(0, 7)], self.population)
             )
+#Be sure to use get_total_population for the kingdom after using this.
 
 
     def local_fill_position(self):
@@ -416,19 +418,19 @@ def get_name(name_type, gender):
     if name_type == "first":
         if gender == "male":
             with open("./Resources/male_names.txt", "r") as opened_file:
-            lines = opened_file.readlines()
-            nu_lines = []
-            for i in lines:
-                new = i.rstrip("\n")
-                nu_lines.append(new)
-            chosen_line = nu_lines[randrange(0, len(nu_lines))]
-            while dupe_check(namelist, chosen_line):
+                lines = opened_file.readlines()
+                nu_lines = []
+                for i in lines:
+                    new = i.rstrip("\n")
+                    nu_lines.append(new)
                 chosen_line = nu_lines[randrange(0, len(nu_lines))]
-            else:
-                return chosen_line
-                namelist.append(chosen_line)
-                if len(namelist) >= 200:
-                    namelist.remove(namelist[:])
+                while dupe_check(namelist, chosen_line):
+                    chosen_line = nu_lines[randrange(0, len(nu_lines))]
+                else:
+                    return chosen_line
+                    namelist.append(chosen_line)
+                    if len(namelist) >= 200:
+                        namelist.remove(namelist[:])
 
         elif gender == "female":
             with open("./Resources/female_names.txt", "r") as opened_file:
@@ -605,7 +607,143 @@ def output_kingdom_content(kingdom, filename):
         opened_file.write("\n")
         opened_file.write("\n")
         opened_file.write("----------\n")
-#Spruce this function up
+
+
+def create_war(kingdom_1, kingdom_2, filename):
+#This creates a war between two kingdoms and outputs it to the output file.
+#    for kingdom in kingdoms:
+#        if at_war == False:
+#            kingdom_1 = kingdom
+#            kingdom_1.at_war = True
+#            break
+#    for kingdom in kingdoms:
+#        if at_war == False:
+#            kingdom_2 = kingdom
+#            kingdom_2.at_war = True
+#            break
+#Pass something similar to this for the kingdom randomizations.
+    kingdom_1.at_war = True
+    kingdom_2.at_war = True
+    
+    with open("/Output/{0}".format(filename), "w") as opened_file:
+        opened_file.write(
+            "The war of {0} and {1} began.\n".format(
+            kingdom_1.full_name, kingdom_2.full_name
+        ))
+
+
+def war_destruction(filename):
+#This chooses a random location in each kingdom that's currently at war and
+#destroys it.
+    for kingdom in kingdoms:
+        if kingdom.at_war == True:
+            location = kingdom.locations[randrange(0, len(locations))]
+            location.alive = False
+            with open("/Output/{0}".format(filename), "w") as opened_file:
+                opened_file.write(
+                    "{0} was destroyed as a result of war.\n".format(
+                    location.full_name)
+                )
+
+
+def end_wars(filename):
+#Ends all wars going on.
+    for kingdom in kingdoms:
+        kingdom.at_war = False
+    with open("/Output/{0}".format(filename), "w") as opened_file:
+        opened_file.write(
+            "The kingdoms came to an agreement and ended the wars going on.\n"
+        )
+
+
+def revolution(kingdom, filename):
+#Causes revolution, usurps current king and queen with commoners.
+    kingdom.king.alive = False
+    kingdom.queen.alive = False
+    new_male = kingdom.people["important_males"][randrange(
+               0, len(kingdom.people["important_males"]))]
+    new_female = kingdom.people["important_females"][randrange(
+                 0, len(kingdom.people["important_female"]))]
+    with open("/Output/{0}".format(filename), "w") as opened_file:
+        opened_file.write(
+          "{0} underwent a coupe. {1} and {2} replaced the king and queen.\n" \
+            .format(kingdom.full_name,
+                    new_male.full_name,
+                    new_female.full_name)
+        )
+    kingdom.king = new_male
+    kingdom.queen = new_female
+    kingdom.people["important_males"].remove(new_male)
+    kingdom.people["important_females"].remove(new_female)
+
+
+def cleanup_lists():
+#Loops through every list and removes objects that are dead (alive == False)
+    for kingdom in kingdoms:
+        for people in kingdom.people:
+            for item in people:
+                if item.alive == False:
+                    people.remove(item)
+        for location in kingdom.locations:
+            for people in location.people:
+                for item in people:
+                    if item.alive == False:
+                        people.remove(item)
+            if location.alive == False:
+                locations.remove(location)
+
+
+def adultery(kingdom, variation, filename):
+#Variation = king, queen, lord, or lady
+    with open("/Output/{0}".format(filename), "w") as opened_file:
+        if variation == "king":
+            cheater = kingdom.people["important_females"][
+                      randrange(0, len(kingdom.people["important_females"]))]
+            opened_file.write(
+                "{0} was caught in an act of infidelity with {1}.\n".format(
+                kingdom.king.full_name, cheater.full_name)
+            )
+        
+        elif variation == "queen":
+            cheater = kingdom.people["important_males"][
+                      randrange(0, len(kingdom.people["important_males"]))]
+            opened_file.write(
+                "{0} was caught in an act of infidelity with {1}.\n".format(
+                 kingdom.queen.full_name, cheater.full_name)
+            )
+
+        elif variation == "lord":
+            cheater = kingdom.people["important_males"][
+                      randrange(0, len(kingdom.people["important_females"]))]
+            lord = kingdom.people["lords"][
+                   randrange(0, len(kingdom.people["lords"]))]
+            opened_file.write(
+                "{0} was caught in an act of infidelity with {1}\n".format(
+                 lord.full_name, cheater.full_name)
+            )
+
+        elif variation == "lady":
+            cheater = kingdom.people["important_males"][
+                      randrange(0, len(kingdom.people["important_males"]))]
+            lady = kingdom.people["ladies"][
+                   randrange(0, len(kingdom.people["ladies"]))]
+            opened_file.write(
+                "{0} was caught in an act of infidelity with {1}\n".format(
+                 lady.full_name, cheater.full_name)
+            )
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def output_year_of_drama():
