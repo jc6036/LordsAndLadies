@@ -17,7 +17,7 @@ If the king or queen die, a prince or princess, can take their place.
 
 ---------------------------
 CURRENT GOALS:
--Get started on getting drama in, starting with single-kingdom functions.
+Create overreaching generator/output function. 
 ---------------------------
 
 Partially Done:
@@ -28,6 +28,10 @@ Some drama
 -Death due to illness
 -Death due to being a casulty of war
 -Death due to natural disaster
+-Random war names
+-Random war between Kingdoms
+-Revolutions
+-Adultery
 
 Note that everything still needs the over-reaching function to bring them all together and get them working.
 
@@ -35,16 +39,15 @@ Note that everything still needs the over-reaching function to bring them all to
 
 Planned features:
 
-Random revolutions, usurping.
-Random war names.
-Random war between Kingdoms.
-Multiple forms of drama, including but not limited to:
--Declarations of War
--Trade Embargos
--Adultery
--Gossip
 Generate number-of-actions-per-year algorithm.
 
 Basic User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.
 -Possible expansion on user definitions after everything is done.
 -More customization for the kingdoms/drama, or insertions of specific names by user.
+
+
+
+
+
+
+
