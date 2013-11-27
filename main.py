@@ -611,17 +611,6 @@ def output_kingdom_content(kingdom, filename):
 
 def create_war(kingdom_1, kingdom_2, filename):
 #This creates a war between two kingdoms and outputs it to the output file.
-#    for kingdom in kingdoms:
-#        if at_war == False:
-#            kingdom_1 = kingdom
-#            kingdom_1.at_war = True
-#            break
-#    for kingdom in kingdoms:
-#        if at_war == False:
-#            kingdom_2 = kingdom
-#            kingdom_2.at_war = True
-#            break
-#Pass something similar to this for the kingdom randomizations.
     kingdom_1.at_war = True
     kingdom_2.at_war = True
     
@@ -733,21 +722,148 @@ def adultery(kingdom, variation, filename):
             )
 
 
+def output_year_of_drama(upper_limit, filename):
+#upper_limit is the maximum events in this single year.
+    drama_types = ["natural_disaster", "illness_death", "adultery",
+                   "assassination_death", "start_war",
+                   "revolution", "war_destruction"]
+# TODO: Make the different types of drama have different chances of happening
+
+    for drama in range(0, upper_limit):
+        random_drama_type = drama_types[randrange(0, len(drama_types))]
+
+        if random_drama_type == "natural_disaster":
+            affected_loc = kingdoms[randrange(0, len(kingdoms))].locations[
+                           randrange(0, len(locations))]
+            affected_loc.natural_disaster(filename)
+            affected_group = kingdoms[randrange(0, len(kingdoms))].people[[
+                             "lords", "ladies", "important_males",
+                             "important_females"][randrange(0, 4)]]
+            affected_person = affected_group[randrange(0, len(affected_group))
+                              ]
+            affected_person.kill_person(filename, "natural_disaster")
+            cleanup_lists()
+#natural_disasters can't kill kings or queens currently
+
+        elif random_drama_type == "illness_death":            
+            roll = randrange(0, 101)
+            if roll > 80:
+                choice = ["king", "queen"][randrange(0, len(choice))]
+                if choice == "king":
+                    kingdom = kingdoms[randrange(0, len(kingdoms))
+                                      ]
+                    affected_person = kingdom.king
+                    affected_person.kill_person(filename, "illness")
+                    kingdom.fill_position(filename, "king")
+                elif choice == "queen":
+                    kingdom = kingdoms[randrange(0, len(kingdoms))
+                                      ]
+                    affected_person = kingdom.queen
+                    affected_person.kill_person(filename, "illness")
+                    kingdom.fill_position(filename, "queen")
+            else:
+                affected_group = kingdoms[randrange(0, len(kingdoms))].people[
+                                 ["lords", "ladies", "important_males",
+                                 "important_females", "princes", "princesses"][
+                                 randrange(0, 6)]
+                                 ]
+                affected_person = affected_group[
+                                  randrange(0, len(affected_group))
+                                  ]
+                affected_person.kill_person(filename, "illness")
+            cleanup_lists()
+#illness can kill anybody. Dead kings and queens will be replaced.
+
+        elif random_drama_type == "assassination_death":
+            roll = randrange(0, 101)
+            if roll > 75:
+                choice = ["king", "queen"][randrange(0, len(choice))]
+                if choice == "king":
+                    kingdom = kingdoms[randrange(0, len(kingdoms))
+                    ]
+                    affected_person = kingdom.king
+                    affected_person.kill_person(filename, "assassination")
+                    kingdom.fill_position(filename, "king")
+                elif choice == "queen":
+                    kingdoms = kingdoms[randrange(0, len(kingdoms))
+                    ]
+                    affected_person = kingdom.queen
+                    affected_person.kill_person(filename, "assassination")
+                    kingdom.fill_position(filename, "queen")
+            else:
+                affected_group = kingdoms[randrange(0, len(kingdoms))].people[
+                                 ["lords", "ladies", "princes", "princesses"][
+                                 randrange(0, 4)]
+                                 ]
+                affected_person = affected_group[randrange(0, len(
+                                  affected_group))]
+                affected_person.kill_person(filename, "assassination")
+            cleanup_lists()
+#commoners are spared from assassinations. Everyone else is fair game.
+
+        elif random_drama_type == "revolution":
+            revolution(kingdoms[randrange(0, len(kingdoms))], filename)
+            cleanup_lists()
+
+        elif random_drama_type == "adultery":
+            kingdom = kingdoms[randrange(0, len(kingdoms))]
+            roll = randrange(0, 500)
+            if roll < 425:
+                adultery(kingdom, ["lord", "lady"][randrange(0, 2)], filename)
+            elif roll >= 425:
+                adultery(kingdom, ["king", "queen"][randrange(0, 2)], filename)
+            cleanup_lists()
+
+        elif random_drama_type == "start_war":
+            all_at_war = False
+            for kingdom in kingdoms:
+                if kingdom.at_war == False:
+                    kingdom = kingdom_1
+                    break
+            else:
+                all_at_war = True
+            for kingdom in kingdoms:
+                if kingdom.at_war == False:
+                    kingdom = kingdom_2
+                    break
+            else:
+                if all_at_war == True:
+                    end_wars(filename)
+            if all_at_war == False:
+                create_war(kingdom_1, kingdom_2, filename)
+            elif all_at_war == True:
+                all_at_war == False
+#this will actually end all current wars if there aren't two kingdoms
+#available to begin a new war
+
+        elif random_drama_type == "war_destruction":
+            war_destruction(filename)
+            for kingdom in kingdoms:
+                if kingdom.at_war == True:
+                    roll = randrange(0, 101)
+                    if roll > 80:
+                        affected_person = [kingdom.king, kingdom.queen][
+                                           randrange(0, 2)]
+                    else:
+                        affected_group = kingdom.people[["lords",
+                                         "ladies",
+                                         "important_males",
+                                         "important_females"][
+                                         randrange(0, 4)]
+                                         ]
+                        affected_person = affected_group[randrange(0, len(
+                                          affected_group))
+                                          ]
+                affected_person.kill_person(filename, "war")
+                if kingdom.king.alive == False:
+                    kingdom.fill_position(filename, "king")
+                elif kingdom.queen.alive == False:
+                    kingdom.fill_position(filename, "queen")
+            cleanup_lists()
+#Kills a random person for each kingdom at war and destroys a location each.
 
 
 
-
-
-
-
-
-
-
-
-
-
-def output_year_of_drama():
-    pass
 
 
 def main_output():
