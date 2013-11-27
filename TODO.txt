@@ -39,7 +39,7 @@ Note that everything still needs the over-reaching function to bring them all to
 
 Planned features:
 
-Generate number-of-actions-per-year algorithm.
+Create number-of-actions-per-year algorithm.
 
 Basic User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.
 -Possible expansion on user definitions after everything is done.
