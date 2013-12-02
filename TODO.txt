@@ -18,6 +18,7 @@ If the king or queen die, a prince or princess, can take their place.
 ---------------------------
 CURRENT GOALS:
 Create overreaching generator/output function. 
+Randomize the chances of certain drama happening.
 ---------------------------
 
 Partially Done:
@@ -33,7 +34,8 @@ Some drama
 -Revolutions
 -Adultery
 
-Note that everything still needs the over-reaching function to bring them all together and get them working.
+Note that everything still needs the over-reaching function to bring them all together and get them working. (DONE. Just needs debugged.)
+
 
 ---------------------------
 

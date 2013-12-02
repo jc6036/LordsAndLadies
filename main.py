@@ -1,6 +1,6 @@
 ################################################
 #Lords and Ladies                              #
-#v0.0.c1                                       #
+#v0.0.c2                                       #
 #Authored by jc6036                            #
 #Python 3.2 with the random module             #
 ################################################
@@ -73,14 +73,14 @@ class Kingdom(object):
 
 
     def populate_important_person(self, number_of, gender):
-        jobs = ["Blacksmith", "Tailor", "Farmer", "Cobbler", "Baker"
+        jobs = ["Blacksmith", "Tailor", "Farmer", "Cobbler", "Baker",
                 "Scholar", "Barkeep", "Potter", "Butcher", "Bard"]
 
         if gender == "male":
             self.important_males = [
                                    Commoner(get_name("first", "male"),
                                    get_name("last", "none"),
-                                   jobs[randrange(0, 10)])
+                                   jobs[randrange(0, len(jobs))])
                                    for i in range(0, number_of)
                                    ]
 
@@ -88,7 +88,7 @@ class Kingdom(object):
             self.important_females = [
                                    Commoner(get_name("first", "female"),
                                    get_name("last", "none"),
-                                   jobs[randrange(0, 10)])
+                                   jobs[randrange(0, len(jobs))])
                                    for i in range(0, number_of)
                                      ]
  #Adds important commoners. Job i randomized; infinite number can be genned,
@@ -464,7 +464,7 @@ def kingdom_gen(index_num):
     else:
         Genned_Kingdom = Kingdom(name_check)
 
-    kingdoms[index_num] = Genned_Kingdom
+    kingdoms.append(Genned_Kingdom)
 
     size = input("Please choose a size: XS, S, M, L, XL.\n").lower()
 
@@ -532,6 +532,13 @@ def kingdom_gen(index_num):
 # defaults to 'm' or 'medium' as the size.
 
 
+def multiple_kingdom_gen():
+    kingdoms = []
+    for i in range(0, int(input("How many kingdoms?\n"))):
+        kingdom_gen(i)
+    length = len(kingdoms)
+
+
 def output_kingdom_content(kingdom, filename):
 # kingdom is object name being described in the text file.
 # Currently kingdom should be passed as kingdoms[index_num] for randomization
@@ -547,6 +554,8 @@ def output_kingdom_content(kingdom, filename):
              king_name, queen_name)
         )
         opened_file.write("\n")
+        opened_file.write("----------\n")
+        opened_file.write("\n")  
 
         princes = kingdom.people["princes"]
         princesses = kingdom.people["princesses"]
@@ -558,7 +567,9 @@ def output_kingdom_content(kingdom, filename):
             opened_file.write("{0}\n".format(i.full_name))
         for i in princesses:
             opened_file.write("{0}\n".format(i.full_name))
-        opened_file.write("\n")    
+        opened_file.write("\n")
+        opened_file.write("----------\n")
+        opened_file.write("\n")
 
         lords = kingdom.people["lords"]
         ladies = kingdom.people["ladies"]
@@ -571,6 +582,8 @@ def output_kingdom_content(kingdom, filename):
         for i in ladies:
             opened_file.write("{0}\n".format(i.full_name))
         opened_file.write("\n")
+        opened_file.write("----------\n")
+        opened_file.write("\n")
 
         males = kingdom.people["important_males"]
         females = kingdom.people["important_females"]
@@ -582,6 +595,8 @@ def output_kingdom_content(kingdom, filename):
             opened_file.write("{0}\n".format(i.full_name))
         for i in females:
             opened_file.write("{0}\n".format(i.full_name))
+        opened_file.write("\n")
+        opened_file.write("----------\n")
         opened_file.write("\n")
 
 
@@ -598,15 +613,21 @@ def output_kingdom_content(kingdom, filename):
                 "Landlord: {0}\n".format(
                  i.people["landlord"][0].full_name)
             )
+            opened_file.write("\n")
             opened_file.write("Notable males and females:\n")
             for people in i.people["important_males"]:
                 opened_file.write("{0}\n".format(people.full_name))
             for people in i.people["important_females"]:
                 opened_file.write("{0}\n".format(people.full_name))
+            opened_file.write("\n")
+            opened_file.write("----------\n")
+            opened_file.write("\n")
 
         opened_file.write("\n")
         opened_file.write("\n")
-        opened_file.write("----------\n")
+        opened_file.write("----------==========----------\n")
+        opened_file.write("\n")
+        opened_file.write("\n")
 
 
 def create_war(kingdom_1, kingdom_2, filename):
@@ -724,19 +745,31 @@ def adultery(kingdom, variation, filename):
 
 def output_year_of_drama(upper_limit, filename):
 #upper_limit is the maximum events in this single year.
-    drama_types = ["natural_disaster", "illness_death", "adultery",
-                   "assassination_death", "start_war",
-                   "revolution", "war_destruction"]
-# TODO: Make the different types of drama have different chances of happening
+    ordinary_drama_types = ["adultery", "illness_death"]
+    rare_drama_types = ["natural_disaster", "war_destruction"]
+    ultra_rare_drama_types = ["assassination_death", "start_war", "revolution"]
+#Uses a roll of 100 to determine drama rarity
 
     for drama in range(0, upper_limit):
-        random_drama_type = drama_types[randrange(0, len(drama_types))]
+        roll = randrange(0, 101)
+        if roll <= 60:
+            random_drama_type = ordinary_drama_types[
+                                    randrange(0, len(ordinary_drama_types))
+                                ]
+        elif roll >= 61 and roll <= 85:
+            random_drama_type = rare_drama_types[
+                                    randrange(0, len(rare_drama_types))
+                                ]
+        elif roll >= 86:
+            random_drama_type = ultra_rare_drama_types[
+                                    randrange(0, len(ultra_rare_drama_types))
+                                ]
 
         if random_drama_type == "natural_disaster":
-            affected_loc = kingdoms[randrange(0, len(kingdoms))].locations[
+            affected_loc = kingdoms[randrange(0, length)].locations[
                            randrange(0, len(locations))]
             affected_loc.natural_disaster(filename)
-            affected_group = kingdoms[randrange(0, len(kingdoms))].people[[
+            affected_group = kingdoms[randrange(0, length)].people[[
                              "lords", "ladies", "important_males",
                              "important_females"][randrange(0, 4)]]
             affected_person = affected_group[randrange(0, len(affected_group))
@@ -748,21 +781,21 @@ def output_year_of_drama(upper_limit, filename):
         elif random_drama_type == "illness_death":            
             roll = randrange(0, 101)
             if roll > 80:
-                choice = ["king", "queen"][randrange(0, len(choice))]
+                choice = ["king", "queen"][randrange(0, 2)]
                 if choice == "king":
-                    kingdom = kingdoms[randrange(0, len(kingdoms))
+                    kingdom = kingdoms[randrange(0, length)
                                       ]
                     affected_person = kingdom.king
                     affected_person.kill_person(filename, "illness")
                     kingdom.fill_position(filename, "king")
                 elif choice == "queen":
-                    kingdom = kingdoms[randrange(0, len(kingdoms))
+                    kingdom = kingdoms[randrange(0, length)
                                       ]
                     affected_person = kingdom.queen
                     affected_person.kill_person(filename, "illness")
                     kingdom.fill_position(filename, "queen")
             else:
-                affected_group = kingdoms[randrange(0, len(kingdoms))].people[
+                affected_group = kingdoms[randrange(0, length)].people[
                                  ["lords", "ladies", "important_males",
                                  "important_females", "princes", "princesses"][
                                  randrange(0, 6)]
@@ -779,19 +812,19 @@ def output_year_of_drama(upper_limit, filename):
             if roll > 75:
                 choice = ["king", "queen"][randrange(0, len(choice))]
                 if choice == "king":
-                    kingdom = kingdoms[randrange(0, len(kingdoms))
+                    kingdom = kingdoms[randrange(0, length)
                     ]
                     affected_person = kingdom.king
                     affected_person.kill_person(filename, "assassination")
                     kingdom.fill_position(filename, "king")
                 elif choice == "queen":
-                    kingdoms = kingdoms[randrange(0, len(kingdoms))
+                    kingdoms = kingdoms[randrange(0, length)
                     ]
                     affected_person = kingdom.queen
                     affected_person.kill_person(filename, "assassination")
                     kingdom.fill_position(filename, "queen")
             else:
-                affected_group = kingdoms[randrange(0, len(kingdoms))].people[
+                affected_group = kingdoms[randrange(0, length)].people[
                                  ["lords", "ladies", "princes", "princesses"][
                                  randrange(0, 4)]
                                  ]
@@ -802,11 +835,11 @@ def output_year_of_drama(upper_limit, filename):
 #commoners are spared from assassinations. Everyone else is fair game.
 
         elif random_drama_type == "revolution":
-            revolution(kingdoms[randrange(0, len(kingdoms))], filename)
+            revolution(kingdoms[randrange(0, length)], filename)
             cleanup_lists()
 
         elif random_drama_type == "adultery":
-            kingdom = kingdoms[randrange(0, len(kingdoms))]
+            kingdom = kingdoms[randrange(0, length)]
             roll = randrange(0, 500)
             if roll < 425:
                 adultery(kingdom, ["lord", "lady"][randrange(0, 2)], filename)
@@ -863,8 +896,31 @@ def output_year_of_drama(upper_limit, filename):
 #Kills a random person for each kingdom at war and destroys a location each.
 
 
+def main_output(filename):
+    multiple_kingdom_gen()
+    choice = input(
+    "Would you like to create files listing the contents of the kingdoms?y/n\n"
+    )
+    if choice == "y" or choice == "Y":
+        for i in kingdoms:
+            output_kingdom_content(i, "Contents_{0}".format(i.name))
+
+
+multiple_kingdom_gen()
+for i in kingdoms:
+    output_kingdom_content(i, "Contents_{0}".format(i.name))
 
 
 
-def main_output():
-    pass
+
+
+
+
+
+
+
+
+
+
+
+
