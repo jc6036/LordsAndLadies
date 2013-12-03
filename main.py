@@ -533,10 +533,9 @@ def kingdom_gen(index_num):
 
 
 def multiple_kingdom_gen():
-    kingdoms = []
     for i in range(0, int(input("How many kingdoms?\n"))):
         kingdom_gen(i)
-    length = len(kingdoms)
+
 
 
 def output_kingdom_content(kingdom, filename):
@@ -745,6 +744,8 @@ def adultery(kingdom, variation, filename):
 
 def output_year_of_drama(upper_limit, filename):
 #upper_limit is the maximum events in this single year.
+    global kingdoms
+    length = len(kingdoms)
     ordinary_drama_types = ["adultery", "illness_death"]
     rare_drama_types = ["natural_disaster", "war_destruction"]
     ultra_rare_drama_types = ["assassination_death", "start_war", "revolution"]
@@ -909,11 +910,14 @@ def main_output(filename):
 multiple_kingdom_gen()
 for i in kingdoms:
     output_kingdom_content(i, "Contents_{0}".format(i.name))
+#for i in kingdoms:
+#    output_kingdom_content(i, "Contents_{0}".format(i.name))
 
 
 
-
-
+#Current issues|
+#1. For whatever reason, my output functions overwrite what's already
+#   in a file instead of adding to it. This is going to need fixed somehow.
 
 
 
