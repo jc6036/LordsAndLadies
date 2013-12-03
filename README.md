@@ -13,6 +13,6 @@ TODO has a feature list, both planned and implemented.
 
 ----------
 
-Currently, only the kingdom generation aspect of the program is complete. The drama has yet to come.
+Only the kingdom generation works right now, and running the program will prompt you for a number of kingdoms and what sizes they are. Check in your 'Output' folder afterwards for the results.
 
-There is a demo text file of what current generation is like in the Output folder. 
+This project is being dropped soon due to mass amounts of ugly and bad code, as it was a beginner's project. It is not guranteed to be started up again or finished at all.
