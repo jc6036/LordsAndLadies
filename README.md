@@ -1,4 +1,4 @@
-LordsAndLadies
+Lords And Ladies
 ==============
 Random kingdom and kingdom drama generator.
 ----------
