@@ -16,7 +16,7 @@ class Kingdom(object):
         self.full_name = "The Kingdom of {0}".format(name)
         self.at_war = False
 
-        self.people = {  #Needed for randomization.
+        self.people = {  
                 "princes": [],
                 "princesses": [],
                 "lords": [],
@@ -146,10 +146,6 @@ class Kingdom(object):
         self.population = 0
         for i in self.locations:
             self.population += i.population
-
-
-#Functions that write to file are below
-#####
 
     def fill_position(self, filename, place_filled):
 # place_filled == either 'king' or 'queen'. Use to choose random prince
