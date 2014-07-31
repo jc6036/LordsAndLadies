@@ -23,7 +23,8 @@ class Kingdom(object):
         }
 
 class Location(Kingdom):
-    """An object to represent locations such as villages and towns."""
+    """An object to represent locations such as villages and towns.
+       Variation == 'village', 'town', 'city', or 'castle'"""
 
     def __init__(self, name, variation):
         self.name = name
