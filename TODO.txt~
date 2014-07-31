@@ -18,6 +18,7 @@ If the king or queen die, a prince or princess, can take their place.
 ---------------------------
 CURRENT GOALS:
 Create overreaching generator/output function. 
+Randomize the chances of certain drama happening.
 ---------------------------
 
 Partially Done:
@@ -33,7 +34,8 @@ Some drama
 -Revolutions
 -Adultery
 
-Note that everything still needs the over-reaching function to bring them all together and get them working.
+Note that everything still needs the over-reaching function to bring them all together and get them working. (DONE. Just needs debugged.)
+
 
 ---------------------------
 
@@ -41,9 +43,34 @@ Planned features:
 
 Create number-of-actions-per-year algorithm.
 
-Basic User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.
+User Input: Number of kingdoms, Name of kingdoms, Number of years of drama to generate.
 -Possible expansion on user definitions after everything is done.
 -More customization for the kingdoms/drama, or insertions of specific names by user.
+
+Output:
+-A population count and listing of important people in the kingdom followed by... 
+-A sequential timeline of events that unfold in the kingdom, modeled as follows:
+---------
+-Year 421-
+January:
+King Harold Clint died of a heart attack.
+King Harold Clint's heir-desiginate, Prince James Clint, succeded the throne.
+July:
+A natural disaster wiped out the village of Carthag.
+December:
+A member of the royal court, Lord Peter McBard, was assassinated.
+-Year 422-
+etc etc.
+---------
+
+
+
+
+
+
+
+
+
 
 
 
