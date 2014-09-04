@@ -550,7 +550,7 @@ def output_kingdom_content(kingdom, filename):
         opened_file.write("\n")
 
 def cleanup_lists():
-#Loops through every list and removes objects that are dead (alive == False)
+# Loops through every list and removes objects that are dead (alive == False)
     for kingdom in kingdoms:
         for people in kingdom.people:
             for item in people:
@@ -564,3 +564,16 @@ def cleanup_lists():
             if location.alive == False:
                 locations.remove(location)
 
+def main_output(filename):
+    multiple_kingdom_gen()
+    choice = input(
+    "Would you like to create files listing the contents of the kingdoms?y/n\n"
+    )
+    if choice == "y" or choice == "Y":
+        for i in kingdoms:
+            output_kingdom_content(i, "Contents_{0}".format(i.name))
+
+
+multiple_kingdom_gen()
+for i in kingdoms:
+    output_kingdom_content(i, "Contents_{0}".format(i.name))
