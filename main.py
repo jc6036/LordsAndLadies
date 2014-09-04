@@ -155,23 +155,24 @@ class Kingdom(object):
                           [randrange(0, len(self.people["princes"]))]
             self.king = replacement
             self.people["princes"].remove(replacement)
-            opened_file = open("{0}".format(filename), "w")
-            opened_file.write(
-                "{0} succeeded his father on the throne.\n".format(
-                replacement.full_name))  
-            opened_file.close()
+#           opened_file = open("{0}".format(filename), "w")
+#           opened_file.write(
+#               "{0} succeeded his father on the throne.\n".format(
+#               replacement.full_name))  
+#           opened_file.close()
+# Code needs to be separated.
 
         elif place_filled == "queen":
             replacement = self.people["princesses"] \
                           [randrange(0, len(self.people["princesses"]))]
             self.queen = replacement
             self.people["princesses"].remove(replacement)
-            opened_file = open("{0}".format(filename), "w")
-            opened_file.write(
-                "{0} succeeded her mother on the throne\n".format(
-                replacement.full_name))
-            opened_file.close()
-#Didn't use with open() as var here for sake of line length.
+#           opened_file = open("{0}".format(filename), "w")
+#           opened_file.write(
+#               "{0} succeeded her mother on the throne\n".format(
+#               replacement.full_name))
+#           opened_file.close()
+# Code needs to be separated.
 
 
 class Location(Kingdom):
@@ -185,7 +186,7 @@ class Location(Kingdom):
         self.variation = variation
         self.full_name = "The {0} of {1}".format(variation, name)
 
-        self.people = {  #Container for location-specific named people.
+        self.people = {  # Container for location-specific named people.
                        "landlord": [],
                        "important_males": [],
                        "important_females":[],
@@ -211,7 +212,7 @@ class Location(Kingdom):
 
 
     def get_local_people(self, num_of_male, num_of_female):
-#num_of_male and num_of_male applies to commoners. Landlord is random gender.
+# num_of_male and num_of_male applies to commoners. Landlord is random gender.
         random_gender = ["male", "female"][randrange(0, 2)]
 
         self.populate_landlords(1, random_gender)
@@ -226,37 +227,8 @@ class Location(Kingdom):
         self.people["important_males"] = self.important_males
         self.people["important_females"] = self.important_females
 
-
-#Functions that write to file are below
-#####
-
-    def natural_disaster(self, filename):
-        disasters = ["a tornado", "a hurricane", "a blizzard",
-                     "a lightning storm", "flooding",
-                     "an earthquake", "a tsunami"]
-
-        with open("./Output/{0}".format(filename), "w") as opened_file:
-            self.population = self.population - randrange(50, 5000)
-            if self.population <= 0:
-                opened_file.write(
-                "{0} was destroyed by {1}\n" \
-                .format(self.full_name, disasters[randrange(0, 7)]
-                ))
-
-                self.alive = False
-                for i in self.people:
-                    for item in i:
-                        item.alive = False
-            else:
-                opened_file.write(
-            "{0} was damaged by {1}, reducing the population to {2}\n".format(
-            self.full_name, disasters[randrange(0, 7)], self.population)
-            )
-#Be sure to use get_total_population for the kingdom after using this.
-
-
     def local_fill_position(self):
-#Same as fill_position, but does so for the local lords and ladies.
+# Same as fill_position, but does so for the local lords and ladies.
         genders = ["male", "female"]
         gender = genders[randrange(0, 2)]
 
@@ -271,8 +243,6 @@ class Location(Kingdom):
             chosen_female = females[randrange(0, len(males))]
             self.people["landlord"] = chosen_female
             self.people["important_males"].remove(chosen_female)
-
-
 
 class Person(object):
     """Function holder for people."""
@@ -294,39 +264,7 @@ class Person(object):
             chosen_line = nu_lines[randrange(0, len(nu_lines))]
             self.title = chosen_line
             self.full_name = "{0} {1}".format(self.full_name, self.title)
-#Grabs titles for people as subfixes
-
-#Functions that write to file are below
-#####
-
-    def kill_person(self, filename, killer):
-# Killer describes the way the person dies. killer takes 'assassination',
-# 'illness', 'war', and 'natural_disaster' currently.
-        if killer == "assassination":
-            self.alive = False
-            with open("./Output/{0}".format(filename), "w") as opened_file:
-                opened_file.write("{0} was assassinated.\n".format(
-                self.full_name))
-
-        elif killer == "illness":
-            self.alive = False
-            with open("./Output/{0}".format(filename), "w") as opened_file:
-                opened_file.write("{0} died due to illness.\n".format(
-                self.full_name))
-
-        elif killer == "war":
-            self.alive = False
-            with open("./Output/{0}".format(filename), "w") as opened_file:
-                opened_file.write("{0} died as a casulty of war.".format(
-                self.full_name))
-
-        elif killer == "natural_disaster":
-            self.alive = False
-            with open("./Output/{0}".format(filename), "w") as opened_file:
-                opened_file.write("{0} died in a natural disaster.".format(
-                self.full_name))
-
-
+# Grabs titles for people as subfixes
 
 class Nobility(Person):
     """Specific actions for Nobility."""
@@ -350,9 +288,9 @@ class Commoner(Person):
 
 
 
-namelist = []  #Used names are added to this
+namelist = []  # Used names are added to this
 
-kingdoms = []  #Used to contain kingdom objects for randomization reasons
+kingdoms = []  # Used to contain kingdom objects for randomization reasons
 
 
 def dupe_check(namelist, name):
@@ -362,12 +300,12 @@ def dupe_check(namelist, name):
             return True
         else:
             return False
-#For seeing if a name is already in use.
+# For seeing if a name is already in use.
 
 
 def get_name(name_type, gender):
-#Name_type can be kingdom, location, last, or first.
-#Gender is either male or female if name_type is first. Otherwise, use 'none'.
+# Name_type can be kingdom, location, last, or first.
+# Gender is either male or female if name_type is first. Otherwise, use 'none'.
 
     if name_type == "kingdom":
         with open("./Resources/kingdom_names.txt", "r") as opened_file:
@@ -449,8 +387,7 @@ def get_name(name_type, gender):
 
 def kingdom_gen(index_num):
 # Designed to run and allow user to determine some variables.
-# index_num is the slice in 'kingdoms' this kingdom is located on and will be
-# needed for randomization reasons.
+# index_num is the indice in 'kingdoms' this kingdom is located on.
     name_check = input(
     "Please enter the name of the kingdom. 'random' will gen a random name.\n"
     )
@@ -536,8 +473,7 @@ def multiple_kingdom_gen():
 
 def output_kingdom_content(kingdom, filename):
 # kingdom is object name being described in the text file.
-# Currently kingdom should be passed as kingdoms[index_num] for randomization
-# reasons.
+# Kingdom should be passed as kingdoms[index_num]
     with open("./Output/{0}".format(filename), "w") as opened_file:
         opened_file.write("{0}\nPopulation: {1}\n".format(
                            kingdom.full_name, kingdom.population))
@@ -624,6 +560,83 @@ def output_kingdom_content(kingdom, filename):
         opened_file.write("\n")
         opened_file.write("\n")
 
+def cleanup_lists():
+#Loops through every list and removes objects that are dead (alive == False)
+    for kingdom in kingdoms:
+        for people in kingdom.people:
+            for item in people:
+                if item.alive == False:
+                    people.remove(item)
+        for location in kingdom.locations:
+            for people in location.people:
+                for item in people:
+                    if item.alive == False:
+                        people.remove(item)
+            if location.alive == False:
+                locations.remove(location)
+
+
+# BEGIN DRAMA CLASS REWRITE
+
+"""
+    def kill_person(self, filename, killer):
+# Killer describes the way the person dies. killer takes 'assassination',
+# 'illness', 'war', and 'natural_disaster' currently.
+        if killer == "assassination":
+            self.alive = False
+            with open("./Output/{0}".format(filename), "w") as opened_file:
+                opened_file.write("{0} was assassinated.\n".format(
+                self.full_name))
+
+        elif killer == "illness":
+            self.alive = False
+            with open("./Output/{0}".format(filename), "w") as opened_file:
+                opened_file.write("{0} died due to illness.\n".format(
+                self.full_name))
+
+        elif killer == "war":
+            self.alive = False
+            with open("./Output/{0}".format(filename), "w") as opened_file:
+                opened_file.write("{0} died as a casulty of war.".format(
+                self.full_name))
+
+        elif killer == "natural_disaster":
+            self.alive = False
+            with open("./Output/{0}".format(filename), "w") as opened_file:
+                opened_file.write("{0} died in a natural disaster.".format(
+                self.full_name))
+Needs to be moved because it writes to file, or there needs to be a separation
+of the effects on the object and the actual writing to file.
+"""
+
+"""
+    def natural_disaster(self, filename):
+        disasters = ["a tornado", "a hurricane", "a blizzard",
+                     "a lightning storm", "flooding",
+                     "an earthquake", "a tsunami"]
+
+        with open("./Output/{0}".format(filename), "w") as opened_file:
+            self.population = self.population - randrange(50, 5000)
+            if self.population <= 0:
+                opened_file.write(
+                "{0} was destroyed by {1}\n" \
+                .format(self.full_name, disasters[randrange(0, 7)]
+                ))
+
+                self.alive = False
+                for i in self.people:
+                    for item in i:
+                        item.alive = False
+            else:
+                opened_file.write(
+            "{0} was damaged by {1}, reducing the population to {2}\n".format(
+            self.full_name, disasters[randrange(0, 7)], self.population)
+            )
+Needs to be moved to a separate area for writing to files, or there needs
+to be a separation of the effects to the object and the actual writing to file.
+#Be sure to use get_total_population for the kingdom after using this.
+"""
+
 
 def create_war(kingdom_1, kingdom_2, filename):
 #This creates a war between two kingdoms and outputs it to the output file.
@@ -680,23 +693,6 @@ def revolution(kingdom, filename):
     kingdom.queen = new_female
     kingdom.people["important_males"].remove(new_male)
     kingdom.people["important_females"].remove(new_female)
-
-
-def cleanup_lists():
-#Loops through every list and removes objects that are dead (alive == False)
-    for kingdom in kingdoms:
-        for people in kingdom.people:
-            for item in people:
-                if item.alive == False:
-                    people.remove(item)
-        for location in kingdom.locations:
-            for people in location.people:
-                for item in people:
-                    if item.alive == False:
-                        people.remove(item)
-            if location.alive == False:
-                locations.remove(location)
-
 
 def adultery(kingdom, variation, filename):
 #Variation = king, queen, lord, or lady
@@ -892,6 +888,7 @@ def output_year_of_drama(upper_limit, filename):
             cleanup_lists()
 #Kills a random person for each kingdom at war and destroys a location each.
 
+# END DRAMA CLASS REWRITE
 
 def main_output(filename):
     multiple_kingdom_gen()
@@ -914,6 +911,8 @@ for i in kingdoms:
 #Current issues|
 #1. For whatever reason, my output functions overwrite what's already
 #   in a file instead of adding to it. This is going to need fixed somehow.
+# That's because you have it set to write mode instead of append mode,
+# dumbass!
 
 
 
