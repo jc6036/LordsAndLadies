@@ -637,7 +637,8 @@ to be a separation of the effects to the object and the actual writing to file.
 #Be sure to use get_total_population for the kingdom after using this.
 """
 
-
+# REFACTOR NOTE: Perhaps use a class for wars? Could be way more useful than
+# the bullshit I was originally trying here...
 def create_war(kingdom_1, kingdom_2, filename):
 #This creates a war between two kingdoms and outputs it to the output file.
     kingdom_1.at_war = True

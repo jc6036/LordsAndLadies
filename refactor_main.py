@@ -285,13 +285,12 @@ class Drama(object):
     def __init__(self, year):
         self.year = year
 
+class War(object):
+    """An object modeling and containing variables for wars between kingdoms."""
 
-
-
-
-
-
-
+    def __init__(self, kingdoms_involved):
+        self.kingdoms_involved = []
+        self.kingdoms_involved = kingdoms_involved
 
 
 def get_name(name_type, gender):
@@ -303,8 +302,8 @@ def get_name(name_type, gender):
             lines = opened_file.readlines()
             nu_lines = []
             for i in lines:
-                new = i.rstrip("\n")
-                nu_lines.append(new)
+                new = i.rstrip("\n") # Newline characters cause issues, so
+                nu_lines.append(new) # they get stipped here.
             chosen_line = nu_lines[randrange(0, len(nu_lines))]
             while dupe_check(namelist, chosen_line):
                 chosen_line = nu_lines[randrange(0, len(nu_lines))]
